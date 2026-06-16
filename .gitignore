@@ -8,4 +8,3 @@ __pycache__/
 
 # STATA
 *.dta
-crs_clean.dta

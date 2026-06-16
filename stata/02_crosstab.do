@@ -1,20 +1,16 @@
 *===============================================================================
-* 02_crosstab.do  ·  교차표(교차분석): 공여국 × 분야 (모듈 3)
+* 02_crosstab.do  ·  교차표: 지역 × 소득그룹 (모듈 3)
 * base STATA · v14+ · 오프라인.  ✅ Stata 19에서 실행 검증 완료(폐쇄망 MP에서도 동일).
-*  → Python 대응: notebooks/02_core_analysis.ipynb 의 pivot_table
+*  → Python 대응: notebooks/02_core_analysis.ipynb 의 crosstab
 *===============================================================================
 version 14
-if "$csv"=="" global csv "sample_crs.csv"
+if "$csv"=="" global csv "wdi_panel.csv"
 import delimited "$csv", clear varnames(1)
 rename *, lower
 
-* ── 건수 교차표 (공여국 × 분야) ──────────────────────────────────────────────
-tabulate donorname sectorname
+* 지역·소득은 국가 속성 → 국가 단위로 집계(국가당 1행)
+bysort economy (year): keep if _n==1
 
-* ── 평균 집행액 교차표 ───────────────────────────────────────────────────────
-table donorname sectorname, contents(mean usd_disbursement) format(%6.1f)
-* └ 참고: STATA 17+ 에서는 다음 최신 문법도 가능
-*    table (donorname) (sectorname), statistic(mean usd_disbursement)
-
-* ── (선택) 분야별 비중(%) ────────────────────────────────────────────────────
-* tabulate sectorname, sort
+* ── 교차표 (국가 수) ─────────────────────────────────────────────────────────
+tabulate region_name income_name
+* └ 행/열 비율이 필요하면:  tabulate region_name income_name, row
