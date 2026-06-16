@@ -125,13 +125,13 @@ print("준비 완료:", df.shape)'''),
     md("## 2) 집단 비교 — 무상 vs 유상(t검정), 분야 간(ANOVA)"),
     code("""grant = df.loc[df.FinanceType == "Grant", "USD_Disbursement"]
 loan  = df.loc[df.FinanceType == "Loan",  "USD_Disbursement"]
-t, p = stats.ttest_ind(grant, loan, equal_var=False)
+t, p = stats.ttest_ind(grant, loan, equal_var=False)  # Welch(분산 다를 때) → STATA는 ttest ..., unequal
 print(f"[t검정] 무상 평균={grant.mean():.1f}  유상 평균={loan.mean():.1f}  t={t:.2f}  p={p:.2e}")
 
 groups = [g["USD_Disbursement"].values for _, g in df.groupby("SectorName")]
 F, p2 = stats.f_oneway(*groups)
 print(f"[ANOVA] 분야 간 평균 차이  F={F:.2f}  p={p2:.2e}")"""),
-    md("""🔁 **STATA**: `ttest usd_disbursement, by(financetype)`  ·  `oneway usd_disbursement sector_n`  ·  코드 → `stata/03_group_compare.do`"""),
+    md("""🔁 **STATA**: `ttest usd_disbursement, by(financetype) unequal`  ·  `oneway usd_disbursement sector_n`  ·  코드 → `stata/03_group_compare.do`"""),
     md("""## 3) 회귀분석 — 배분 결정요인 (로그변환의 이유)
 집행액은 **왜도가 크다**(소수 대형사업). 그대로 쓰면 분석이 왜곡되므로 **로그**를 취한다.
 → AI가 자동으로 안 해줄 수 있는 **설계 판단**이고, 이게 사람의 역할이다."""),
