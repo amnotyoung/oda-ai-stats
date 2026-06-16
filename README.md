@@ -1,7 +1,7 @@
 # 데이터 고급 통계 분석 실무 활용 — 실습 코드
 
 > **AI로 통계 분석의 난이도를 낮춘다.** 같은 국제개발협력 데이터(OECD CRS 구조)를
-> **Python(Colab)**과 **STATA**로 분석하고, 각 도구가 유리한 지점과 **인간의 검증력**을 익힌다.
+> **Python(Colab)**과 **STATA**로 분석하고, 각 도구의 쓰임과 **인간의 검증력**을 익힌다.
 
 이 저장소는 강의 실습용이다. 데이터는 실제 원조액이 아니라 **CRS 구조를 모사한 교육용 합성 데이터**다.
 
@@ -27,8 +27,8 @@
 |---|---|---|
 | 2 | 데이터 불러오기·정제 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/01_load_clean.ipynb) |
 | 3 | 핵심 분석(교차표·검정·회귀) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/02_core_analysis.ipynb) |
-| 4-A | STATA가 빛나는 분석(패널) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/03_panel_fe.ipynb) |
-| 4-B | Python이 빛나는 분석(텍스트) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/04_text_analysis.ipynb) |
+| 4-A | 패널 고정효과(고급 분석) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/03_panel_fe.ipynb) |
+| 4-B | 텍스트 분석(Python 확장) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/04_text_analysis.ipynb) |
 | 5 | 인간의 검증력(시각화) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/05_human_verification.ipynb) |
 
 ---
@@ -52,8 +52,8 @@ oda-ai-stats/
 ├─ notebooks/        외부망 Colab용 (Python)
 │  ├─ 01_load_clean.ipynb          모듈2  불러오기·정제
 │  ├─ 02_core_analysis.ipynb       모듈3  교차표·t검정/ANOVA·회귀
-│  ├─ 03_panel_fe.ipynb            모듈4A STATA가 빛나는 분석(패널)
-│  ├─ 04_text_analysis.ipynb       모듈4B Python이 빛나는 분석(텍스트)
+│  ├─ 03_panel_fe.ipynb            모듈4A 패널 고정효과(고급 분석)
+│  ├─ 04_text_analysis.ipynb       모듈4B 텍스트 분석(Python 확장)
 │  └─ 05_human_verification.ipynb  모듈5  인간 검증력(시각화)
 ├─ stata/            폐쇄망 반입용 (.do, base STATA·오프라인)
 │  ├─ 00_master.do  01_load_clean.do  02_crosstab.do

@@ -6,8 +6,8 @@ Colab용 .ipynb 5종을 생성한다(모듈 매핑). 의존성 없이 표준 라
 생성물(notebooks/):
   01_load_clean.ipynb        모듈2  데이터 불러오기·정제
   02_core_analysis.ipynb     모듈3  교차표·t검정/ANOVA·회귀 (STATA와 대조)
-  03_panel_fe.ipynb          모듈4A STATA가 빛나는 분석(패널 고정효과)
-  04_text_analysis.ipynb     모듈4B Python이 빛나는 분석(텍스트)
+  03_panel_fe.ipynb          모듈4A 패널 고정효과(고급 분석)
+  04_text_analysis.ipynb     모듈4B 텍스트 분석(Python 확장 영역)
   05_human_verification.ipynb 모듈5 인간의 검증력(시각화로 오류 잡기)
 """
 import json, os
@@ -149,13 +149,13 @@ print(f"\\nR² = {m.rsquared:.3f}")"""),
 *무엇을·왜 분석할지 설계*하고 *결과를 검증·해석*하는 것."""),
 ])
 
-# ════════════════════════ 03 · STATA가 빛나는 분석 (패널) ════════════════════════
+# ════════════════════════ 03 · 고급 분석: 패널 고정효과 ════════════════════════
 write_nb("03_panel_fe.ipynb", [
-    md(f"""# 03 · STATA가 빛나는 분석: 패널 고정효과  (모듈 4-A)
+    md(f"""# 03 · 고급 분석: 패널 고정효과  (모듈 4-A)
 {badge("03_panel_fe.ipynb")}
 
-> 같은 분석도 **도구에 따라 난이도가 다르다.** 계량경제 모형(패널 고정효과)은
-> **STATA가 압도적으로 짧고 표준적**이다. Python으로도 되지만 더 번거롭다 — 직접 비교해보자."""),
+> 고급 계량 분석도 AI 도움으로 **양쪽 도구에서** 할 수 있다. 패널 고정효과를 Python으로,
+> 그리고 STATA로 — **둘 다 같은 결과**. 도구는 우열이 아니라 **환경(폐쇄망/외부망)**으로 고른다."""),
     code(f'''import pandas as pd, numpy as np
 import statsmodels.formula.api as smf
 df = pd.read_csv("{RAW}")
@@ -168,28 +168,28 @@ print("공여국-수원국 쌍 수:", df["pair_id"].nunique(), "· 연도:", df[
     md("### (1) 통제 안 함 — 단순 회귀(pooled)"),
     code("""pooled = smf.ols("log_disb ~ log_gdppc + log_pop", data=df).fit()
 print("pooled  log_pop 계수 =", round(pooled.params["log_pop"], 3))"""),
-    md("### (2) Python으로 고정효과 — 쌍 더미를 다 넣어야 한다"),
+    md("### (2) Python으로 고정효과 (쌍 효과 흡수)"),
     code("""fe = smf.ols("log_disb ~ log_gdppc + log_pop + C(pair_id)", data=df).fit()
 n_dummies = sum(c.startswith("C(pair_id)") for c in fe.params.index)
 print("FE      log_pop 계수 =", round(fe.params["log_pop"], 3), "(쌍효과 흡수로 변화)")
-print("추가된 쌍 더미 개수 =", n_dummies, "개  ← Python에선 이걸 다 다뤄야")"""),
-    md("""### (3) STATA라면 — **단 두 줄**
+print("추가된 쌍 더미 개수 =", n_dummies, "개 (쌍 고정효과)")"""),
+    md("""### (3) STATA에선 — 같은 분석
 ```stata
 xtset pair_id
 xtreg log_disb log_gdppc log_pop, fe vce(cluster pair_id)
 ```
-- `xtreg, fe` 가 60개 쌍의 고정효과를 알아서 흡수하고, `vce(cluster ...)`로 강건표준오차까지 한 번에.
-- (한 쌍·연도에 여러 분야 사업이 있어 **쌍 고정효과만** 선언 — 위 Python의 `C(pair_id)`와 동일.)
-- 코드 → `stata/05_panel_fe.do`  ·  **`xtreg`는 base STATA 내장 → 폐쇄망에서 인터넷 없이 실행** ✅
+- `xtreg, fe` 가 60개 쌍의 고정효과를 흡수하고, `vce(cluster ...)`로 강건표준오차까지. 위 Python의 `C(pair_id)`와 **동일한 모형**.
+- (한 쌍·연도에 여러 분야 사업이 있어 **쌍 고정효과만** 선언.)
+- 코드 → `stata/05_panel_fe.do`  ·  **`xtreg`는 폐쇄망에서 인터넷 없이 실행** ✅
 
 ---
-✅ **포인트**: 인과추론·패널·강건표준오차 같은 **계량 모형은 STATA 생태계가 짧고·표준적·검증됨**.
-"이런 분석이 오면 STATA"라고 판단할 수 있으면 된다. (문법은 AI가 짜준다.)"""),
+✅ **포인트**: 고급 계량 모형도 이제 **양쪽에서** 가능 — AI가 코드를 짜준다.
+도구는 *우열*이 아니라 **환경**으로 고른다(폐쇄망 현업은 STATA, 외부망 탐색·확장은 Python)."""),
 ])
 
-# ════════════════════════ 04 · Python이 빛나는 분석 (텍스트) ════════════════════════
+# ════════════════════════ 04 · Python의 확장 영역: 텍스트 ════════════════════════
 write_nb("04_text_analysis.ipynb", [
-    md(f"""# 04 · Python이 빛나는 분석: 사업설명 텍스트  (모듈 4-B)
+    md(f"""# 04 · Python의 확장 영역: 사업설명 텍스트  (모듈 4-B)
 {badge("04_text_analysis.ipynb")}
 
 > **STATA로는 사실상 못 하는** 분석. 수천 개 사업 설명문에서 "우리가 실제로 무엇을 하나"를
