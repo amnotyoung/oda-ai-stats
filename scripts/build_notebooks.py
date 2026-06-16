@@ -51,6 +51,19 @@ df = pd.read_csv(RAW)
 print("행 x 열:", df.shape)
 df.head()'''
 
+# 한글 폰트 설정 셀(그래프가 있는 노트북에만 삽입). Colab 밖에서도 에러 없이 통과하도록 예외처리.
+FONT_SETUP = '''# 한글 폰트 설정 — Colab 그래프의 한글이 깨지지 않도록 (처음 1회 약 20초)
+import os, matplotlib.pyplot as plt, matplotlib.font_manager as fm
+try:
+    p = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
+    if not os.path.exists(p):
+        os.system("apt-get -qq install -y fonts-nanum > /dev/null 2>&1")
+    fm.fontManager.addfont(p)
+    plt.rc("font", family="NanumGothic")
+except Exception:
+    pass
+plt.rc("axes", unicode_minus=False)'''
+
 # ════════════════════════════ 01 · 데이터 불러오기·정제 ════════════════════════════
 write_nb("01_load_clean.ipynb", [
     md(f"""# 01 · 데이터 불러오기와 정제  (모듈 2)
@@ -181,6 +194,7 @@ write_nb("04_text_analysis.ipynb", [
 
 > **STATA로는 사실상 못 하는** 분석. 수천 개 사업 설명문에서 "우리가 실제로 무엇을 하나"를
 > 텍스트로 들여다본다. 이런 일(텍스트·수집·자동화·ML)은 **Python의 영역**이고 외부망에서 한다."""),
+    code(FONT_SETUP),
     code(f'''import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -219,6 +233,7 @@ write_nb("05_human_verification.ipynb", [
 
 > AI가 만든 "그럴듯한 분석"을 **인간의 3대 무기 — 🖼️시각화 · 🧭도메인 지식 · 👥동료 회람**으로 검증한다.
 > AI는 빠르지만 *보지 못하고, 맥락이 없고, 혼자* 일한다."""),
+    code(FONT_SETUP),
     code(f'''import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 df = pd.read_csv("{RAW}")'''),
