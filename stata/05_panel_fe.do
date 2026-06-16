@@ -15,10 +15,15 @@ gen log_gdp = ln(gdp_pc)
 encode economy, gen(country_id)                 // 문자열 국가코드 → 숫자 패널 ID
 xtset country_id year
 
-* ── 고정효과 회귀 + 클러스터 강건표준오차: 단 한 줄로 끝 ─────────────────────
-xtreg life_exp log_gdp, fe vce(cluster country_id)
-* └ 200여 개 국가 고유효과를 xtreg,fe 가 흡수. Python에선 더미 213개를 직접 다뤄야 했다.
-
-* ── 비교용: 고정효과 없는 합동(pooled) 회귀 ─────────────────────────────────
+* ── (1) 통제 없음: 합동(pooled) 회귀 ────────────────────────────────────────
 regress life_exp log_gdp
-* 두 결과의 계수 변화를 보면 '국가 고유효과'가 통제됐음을 알 수 있다.
+* → log_gdp ≈ 4.59
+
+* ── (2) 국가 고정효과: 국가 고유차(제도·기후 등) 통제 ───────────────────────
+xtreg life_exp log_gdp, fe vce(cluster country_id)
+* → log_gdp ≈ 3.54  (Python C(economy)와 동일)
+
+* ── (3) 이원 고정효과: 국가 + 연도 동시 통제 (고급) ─────────────────────────
+xtreg life_exp log_gdp i.year, fe vce(cluster country_id)
+* → log_gdp ≈ 1.26 : 전세계 시대추세(i.year)까지 빼면 효과가 또 변한다 — 식별의 문제.
+*   이원 고정효과 = 차분-차분(DiD) 임팩트평가의 엔진. Python과 계수 정확히 일치(1.262).

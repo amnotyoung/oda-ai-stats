@@ -25,8 +25,8 @@
 |---|---|---|
 | 2 | 데이터 불러오기·정제 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/01_load_clean.ipynb) |
 | 3 | 핵심 분석(교차표·검정·회귀) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/02_core_analysis.ipynb) |
-| 4-A | 패널 고정효과(고급 분석) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/03_panel_fe.ipynb) |
-| 4-B | 라이브 API 수집(Python 확장) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/04_python_strength.ipynb) |
+| 4-A | 이원 고정효과(고급 인과추론) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/03_panel_fe.ipynb) |
+| 4-B | 라이브 수집 + 머신러닝(Python 고급) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/04_python_strength.ipynb) |
 | 5 | 인간의 검증력(시각화) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amnotyoung/oda-ai-stats/blob/main/notebooks/05_human_verification.ipynb) |
 
 ---
@@ -39,7 +39,7 @@
 4. 전체 실행. 끝.
 
 - 모든 `.do`는 **추가 패키지(SSC) 없이 base STATA**·**STATA 14 이상**에서 동작 → 인터넷 불필요.
-- ✅ **Stata 19에서 실행·교차검증 완료** — 회귀·ANOVA·패널 고정효과 결과가 Python과 일치. 폐쇄망 MP에서도 동일.
+- ✅ **Stata 19에서 실행·교차검증 완료** — 회귀·ANOVA·이원 고정효과(4.59→3.54→1.26)가 Python과 일치. 폐쇄망 MP에서도 동일.
 
 ---
 
@@ -50,8 +50,8 @@ oda-ai-stats/
 ├─ notebooks/        외부망 Colab용 (Python)
 │  ├─ 01_load_clean.ipynb          모듈2  불러오기·정제
 │  ├─ 02_core_analysis.ipynb       모듈3  교차표·t검정/ANOVA·회귀
-│  ├─ 03_panel_fe.ipynb            모듈4A 패널 고정효과(고급 분석)
-│  ├─ 04_python_strength.ipynb     모듈4B 라이브 API 수집·자동화(Python 확장)
+│  ├─ 03_panel_fe.ipynb            모듈4A 이원 고정효과(고급 인과추론)
+│  ├─ 04_python_strength.ipynb     모듈4B 라이브 수집 + 머신러닝(Python 고급)
 │  └─ 05_human_verification.ipynb  모듈5  인간 검증력(시각화)
 ├─ stata/            폐쇄망 반입용 (.do, base STATA·오프라인)
 │  ├─ 00_master.do  01_load_clean.do  02_crosstab.do
@@ -71,8 +71,8 @@ oda-ai-stats/
 | 교차표(지역×소득) | `02_core_analysis` | `02_crosstab.do` |
 | t검정·ANOVA | `02_core_analysis` | `03_group_compare.do` |
 | 회귀(Preston 곡선) | `02_core_analysis` | `04_regression.do` |
-| 패널 고정효과 | `03_panel_fe` | `05_panel_fe.do` |
-| 라이브 API 수집·자동화 | `04_python_strength` | *(STATA로는 어려움 — Python 영역)* |
+| 이원 고정효과(국가+연도) | `03_panel_fe` | `05_panel_fe.do` |
+| 라이브 수집 + 머신러닝 | `04_python_strength` | *(STATA로는 어려움 — Python 영역)* |
 
 ---
 

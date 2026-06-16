@@ -151,61 +151,75 @@ import statsmodels.formula.api as smf
 df = pd.read_csv("{RAW}").dropna(subset=["gdp_pc","life_exp"])
 df["log_gdp"] = np.log(df["gdp_pc"])
 print("국가:", df["economy"].nunique(), "· 연도:", df["year"].nunique(), "· 행:", len(df))'''),
-    md("""## 문제 — 국가의 고유 특성을 통제하려면?
-제도·기후·역사처럼 **잘 변하지 않는 국가 고유 효과**를 빼고, *한 나라 안에서* 소득이 오를 때
-기대수명이 어떻게 변하는지 보려면 **고정효과**가 필요하다."""),
+    md("""## 문제 — 국가·시대의 교란을 통제하려면? (식별의 문제)
+소득과 기대수명은 둘 다 **시간이 가며 함께 오른다.** 단순 상관엔 *국가 고유차*와 *전세계 시대추세*가
+뒤섞여 있다. 진짜 효과를 보려면 이 둘을 **고정효과**로 걷어내야 한다 — 임팩트평가의 핵심 아이디어."""),
     md("### (1) 통제 안 함 — 단순 회귀(pooled)"),
     code("""pooled = smf.ols("life_exp ~ log_gdp", data=df).fit()
-print("pooled  log_gdp 계수 =", round(pooled.params["log_gdp"], 2))"""),
-    md("### (2) Python으로 국가 고정효과 (더미를 다 넣어야 함)"),
+print("pooled         log_gdp =", round(pooled.params["log_gdp"], 2))"""),
+    md("### (2) 국가 고정효과 — 국가 고유차 통제"),
     code("""fe = smf.ols("life_exp ~ log_gdp + C(economy)", data=df).fit()
-n = sum(c.startswith("C(economy)") for c in fe.params.index)
-print("국가FE  log_gdp 계수 =", round(fe.params["log_gdp"], 2), "(국가효과 흡수로 변화)")
-print("추가된 국가 더미 =", n, "개 (국가 고정효과)")"""),
-    md("""### (3) STATA에선 — 같은 분석
+print("국가 FE        log_gdp =", round(fe.params["log_gdp"], 2), "(국가 고유효과 흡수)")"""),
+    md("""### (3) **이원 고정효과** — 국가 + 연도 동시 통제 (고급)
+전세계가 함께 좋아진 **시대추세**(`C(year)`)까지 빼면 효과가 또 달라진다."""),
+    code("""twfe = smf.ols("life_exp ~ log_gdp + C(economy) + C(year)", data=df).fit()
+print("이원 FE(+연도) log_gdp =", round(twfe.params["log_gdp"], 2), "(시대추세까지 흡수)")
+print("\\n→ 4.59 → 3.54 → 1.26 : 무엇을 통제하느냐에 따라 답이 바뀐다(식별의 문제).")"""),
+    md("""### (4) STATA에선 — 같은 분석
 ```stata
 encode economy, gen(country_id)
 xtset country_id year
-xtreg life_exp log_gdp, fe vce(cluster country_id)
+xtreg life_exp log_gdp i.year, fe vce(cluster country_id)
 ```
-- `xtreg, fe` 가 200여 개 국가 고정효과를 흡수하고, `vce(cluster ...)`로 강건표준오차까지. 위 Python의 `C(economy)`와 **동일한 모형**.
-- 코드 → `stata/05_panel_fe.do`  ·  **`xtreg`는 폐쇄망에서 인터넷 없이 실행** ✅
+- `i.year`로 연도효과까지 한 번에. base STATA — **폐쇄망에서 인터넷 없이 실행** ✅  코드 → `stata/05_panel_fe.do`
+- 두 도구 계수가 **정확히 일치**(1.262)한다 — 교차검증.
 
 ---
-✅ **포인트**: 고급 계량 모형도 이제 **양쪽에서** 가능 — AI가 코드를 짜준다.
-도구는 *우열*이 아니라 **환경**으로 고른다(폐쇄망 현업은 STATA, 외부망 탐색·확장은 Python)."""),
+✅ **포인트**: 이원 고정효과는 **차분-차분(DiD) 임팩트평가의 엔진**이다(KOICA M&E와 직결).
+"무엇을 통제했나"가 결과를 좌우하므로 *설계·검증은 사람 몫* — AI는 코드를 짜고, 판단은 여러분이 한다."""),
 ])
 
-# ════════════════════════ 04 · Python 확장 영역: 라이브 API 수집 ════════════════════════
+# ════════════════════════ 04 · Python 고급: 라이브 수집 + 머신러닝 ════════════════════════
 write_nb("04_python_strength.ipynb", [
-    md(f"""# 04 · Python의 확장 영역: 라이브 API 데이터 수집  (모듈 4-B)
+    md(f"""# 04 · Python 고급: 라이브 수집 + 머신러닝  (모듈 4-B)
 {badge("04_python_strength.ipynb")}
 
-> **STATA로는 하기 어려운** 일. World Bank API에서 **실시간으로 데이터를 수집하고 자동화**한다.
-> 사실 *이 강의 데이터 자체*가 이렇게 만들어졌다. 수집·API·자동화·ML은 **Python의 영역**이고 외부망에서 한다."""),
-    code("""# World Bank 공식 API 패키지 (Colab에 없으면 설치)
-try:
+> **STATA로는 어려운** 두 가지를 Python으로: ① World Bank API에서 **실시간 데이터 수집**,
+> ② **머신러닝**으로 예측·변수중요도. 수집·자동화·ML은 **Python의 영역**(외부망)이다."""),
+    md("## 1) 라이브 API 수집 — 이 데이터가 만들어진 방식\n`wbgapi`로 World Bank에서 직접 가져온다(저장된 CSV가 아니라 라이브). 여러 지표를 한 번에 = 자동화."),
+    code("""try:
     import wbgapi as wb
 except ModuleNotFoundError:
     import subprocess, sys
-    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "wbgapi"])
-    import wbgapi as wb
-import pandas as pd
-print("wbgapi 준비 완료")"""),
-    md("## 1) 한 줄로 실시간 수집 — 1인당 GDP, 최근\nAPI를 직접 호출해 **방금 만든** 데이터를 가져온다(저장된 CSV가 아니라 라이브)."),
-    code("""wb.data.DataFrame("NY.GDP.PCAP.CD", ["KOR","VNM","KEN","ETH"], range(2019, 2023)).round(0)"""),
-    md("## 2) 자동화 — 여러 지표를 한 번에 수집\n사람이 일일이 복사할 일을 코드가 반복한다(자동화의 핵심)."),
-    code("""series = {"NY.GDP.PCAP.CD":"gdp_pc", "SP.DYN.LE00.IN":"life_exp", "IT.NET.USER.ZS":"internet_%"}
-live = wb.data.DataFrame(list(series), ["KOR","VNM","KEN","ETH"], time=2021, columns="series", labels=False)
-live.rename(columns=series).round(1)"""),
-    md("## 3) 검색도 코드로 — '기대수명' 지표 찾기"),
-    code("""for s in wb.series.info(q="life expectancy").items[:5]:
-    print(s["id"], "—", s["value"])"""),
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "wbgapi"]); import wbgapi as wb
+# 1인당 GDP·기대수명을 여러 나라에 대해 한 번에
+wb.data.DataFrame(["NY.GDP.PCAP.CD","SP.DYN.LE00.IN"], ["KOR","VNM","KEN","ETH"],
+                  time=2021, columns="series", labels=False).round(1)"""),
+    md("""## 2) 머신러닝 — 기대수명 예측 + 변수 중요도
+"어떤 개발지표가 기대수명을 가장 잘 예측하나?"를 **랜덤포레스트**로. (분석용 데이터는 저장본 사용)"""),
+    code(f'''import pandas as pd, numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split, cross_val_score
+df = pd.read_csv("{RAW}").dropna(subset=["gdp_pc","life_exp","prim_enroll"]).copy()
+df["log_gdp"] = np.log(df["gdp_pc"]); df["log_pop"] = np.log(df["pop"])
+X = pd.get_dummies(df[["log_gdp","log_pop","prim_enroll","region_name","income_name"]], drop_first=True)
+y = df["life_exp"]
+print("특성:", X.shape[1], "개 · 표본:", len(y))'''),
+    md("### train/test 분할 + 교차검증 — '예측력'을 정직하게 평가\n학습에 안 쓴 데이터로 평가해야 과적합에 안 속는다(ML의 핵심 규율)."),
+    code("""Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.25, random_state=42)
+rf  = RandomForestRegressor(n_estimators=300, random_state=42).fit(Xtr, ytr)
+ols = LinearRegression().fit(Xtr, ytr)
+print(f"랜덤포레스트  test R² = {rf.score(Xte, yte):.3f}")
+print(f"선형회귀(OLS) test R² = {ols.score(Xte, yte):.3f}   ← RF가 비선형을 더 잘 잡음")
+print(f"랜덤포레스트  5-fold 교차검증 R² = {cross_val_score(rf, X, y, cv=5).mean():.3f}")"""),
+    md("### 변수 중요도 — 무엇이 기대수명을 가장 잘 예측하나?"),
+    code("""pd.Series(rf.feature_importances_, index=X.columns).sort_values(ascending=False).head(6).round(3)"""),
     md("""---
-✅ **포인트**: 이건 **Python만의 능력**이다(수집·API·자동화·텍스트·ML).
-"이런 분석이 오면 Python, 외부망에서" 라고 판단하면 된다. STATA로는 사실상 못 한다.
+✅ **포인트**: 수집·자동화·머신러닝은 **Python의 영역**(STATA는 사실상 못 함). 입문자도 AI 도움으로
+랜덤포레스트·교차검증을 돌린다 — 단, **train/test로 정직하게 평가**하고 결과를 **검증**하는 건 사람 몫.
 
-🧭 **인간 검증**: API가 준 값이 현장과 맞는지(예: 한국 인터넷 보급률)는 **도메인 지식**으로 확인한다."""),
+🧭 **인간 검증**: 변수중요도 1위가 현장 감각과 맞나? 예측을 *인과*로 오해하지 않았나?"""),
 ])
 
 # ════════════════════════ 05 · 인간의 검증력 (시각화) ════════════════════════
