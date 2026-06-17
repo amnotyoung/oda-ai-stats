@@ -19,6 +19,16 @@
 
 ---
 
+## 📽️ 발표 슬라이드 (39장)
+
+강의 발표용 슬라이드(HTML · 16:9)를 [`slides/`](slides/)에 담았다.
+
+- **보기**: 저장소를 내려받아 `slides/viewer.html`을 브라우저로 연다 — 39장을 한 번에 넘겨본다.
+- **인터랙티브**: Preston 곡선 산점도·로그변환·고정효과 단계·이상치 검출 슬라이드는 클릭/호버로 동작한다.
+- 개별 파일은 `slides/slide-01.html` … `slide-39.html`.
+
+---
+
 ## 🚀 외부망 실습 — Colab에서 바로 열기 (설치 불필요)
 
 | 모듈 | 노트북 | 열기 |
@@ -78,9 +88,10 @@ oda-ai-stats/
 ├─ handouts/
 │  ├─ prompt_patterns.md        AI 분석 의뢰 프롬프트 패턴
 │  └─ verification_checklist.md 인간의 3대 무기 검증 체크리스트
-└─ scripts/          데이터·노트북 재생성용(강사용)
-   ├─ build_wdi_data.py     wbgapi로 WDI 패널 재생성
-   └─ build_notebooks.py
+├─ scripts/          데이터·노트북 재생성용(강사용)
+│  ├─ build_wdi_data.py     wbgapi로 WDI 패널 재생성
+│  └─ build_notebooks.py
+└─ slides/           발표 슬라이드 (HTML 39장 · viewer.html · 일부 인터랙티브)
 ```
 
 | 분석 | Python(Colab) | STATA(폐쇄망) |

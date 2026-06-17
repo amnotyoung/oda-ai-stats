@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:13pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.tag{display:inline-block;padding:3pt 9pt;border-radius:5pt;font-size:9pt;font-weight:700;letter-spacing:0.02em;}
+.rq{background:var(--soft);border-radius:7pt;padding:8pt 13pt;margin-bottom:11pt;}
+pre.code{background:var(--code-bg);border-radius:8pt;padding:12pt 14pt;color:var(--code-ink);font-family:'SF Mono','JetBrains Mono',Menlo,Consolas,'Pretendard',monospace;font-size:8.7pt;line-height:1.62;overflow:hidden;white-space:pre-wrap;word-break:break-word;}
+.code .c{color:var(--com);}.code .k{color:var(--kw);}.code .s{color:var(--str);}.code .n{color:var(--num);}.code .f{color:var(--fn);}.code .o{color:var(--op);}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 03</span><h4>② 집단 비교</h4></div><p class="pg">22 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:21pt;margin-bottom:9pt;">② 집단 비교 — t검정 · ANOVA</h2>
+    <div class="rq"><p style="font-size:10.5pt;color:var(--accent2);font-weight:600;">🔎 연구질문 — 사하라이남 vs 그 외(2집단)? &nbsp;·&nbsp; 소득그룹 4개 사이(3집단+)?</p></div>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14pt;">
+      <div style="display:flex;flex-direction:column;">
+        <div style="margin-bottom:8pt;"><span class="tag" style="background:var(--accent);color:#fff;">Python · scipy</span></div>
+        <pre class="code"><span class="k">from</span> scipy <span class="k">import</span> stats
+<span class="c"># 2집단 — Welch t검정</span>
+stats.<span class="f">ttest_ind</span>(ssa, rest, equal_var=<span class="k">False</span>)
+<span class="c"># 3집단+ — 일원 ANOVA</span>
+stats.<span class="f">f_oneway</span>(*groups)</pre>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <div style="margin-bottom:8pt;"><span class="tag" style="background:var(--navy);color:#fff;">STATA</span></div>
+        <pre class="code"><span class="c">* 2집단 — Welch t검정</span>
+<span class="k">ttest</span> life_exp, <span class="k">by</span>(ssa) unequal
+
+<span class="c">* 3집단+ — 일원 ANOVA</span>
+<span class="k">oneway</span> life_exp income_n, tabulate</pre>
+      </div>
+    </div>
+    <div style="margin-top:12pt;background:var(--surface2);border:1px solid var(--border);border-radius:8pt;padding:11pt 16pt;">
+      <p style="font-size:10.5pt;color:var(--ink);line-height:1.45;"><b>두 집단</b>이면 t검정, <b>세 집단 이상</b>이면 ANOVA. 분산이 다를 수 있어 t검정은 <b>Welch(unequal)</b>를 쓴다.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;}
+table{width:100%;border-collapse:collapse;}
+td,th{text-align:left;padding:13pt 14pt;vertical-align:middle;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 04-C</span><h4>도구 선택</h4></div><p class="pg">34 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:23pt;margin-bottom:5pt;">도구 선택은 <span class="k1">'환경·작업'</span>으로</h2>
+    <p style="font-size:11pt;color:var(--muted);margin-bottom:16pt;">'무료냐 유료냐'가 아니라, '어디서 돌려야 하고 무슨 일이냐'로 고른다.</p>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:11pt;padding:4pt 12pt;">
+      <table>
+        <thead><tr style="border-bottom:1.5pt solid var(--ink);">
+          <th style="font-size:9.5pt;color:var(--muted);font-weight:700;width:46%;">이럴 땐</th>
+          <th style="font-size:9.5pt;color:var(--muted);font-weight:700;width:20%;">도구</th>
+          <th style="font-size:9.5pt;color:var(--muted);font-weight:700;width:34%;">이유</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="font-size:11.5pt;color:var(--ink);font-weight:600;">폐쇄망에서 바로 실행해야 하는 현업 분석</td>
+            <td><span style="display:inline-block;padding:4pt 12pt;background:var(--navy);color:#fff;border-radius:6pt;font-size:11pt;font-weight:700;">STATA</span></td>
+            <td style="font-size:10.5pt;color:var(--ink2);">현재 우리 폐쇄망 실행 환경</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="font-size:11.5pt;color:var(--ink);font-weight:600;">수집·API·자동화·ML·텍스트·시각화·배포</td>
+            <td><span style="display:inline-block;padding:4pt 12pt;background:var(--accent);color:#fff;border-radius:6pt;font-size:11pt;font-weight:700;">Python</span></td>
+            <td style="font-size:10.5pt;color:var(--ink2);">압도적 생태계, 외부망에서</td>
+          </tr>
+          <tr>
+            <td style="font-size:11.5pt;color:var(--ink);font-weight:600;">모르겠다</td>
+            <td><span style="display:inline-block;padding:4pt 12pt;background:var(--soft);color:var(--accent2);border-radius:6pt;font-size:11pt;font-weight:700;">둘 다</span></td>
+            <td style="font-size:10.5pt;color:var(--ink2);">AI에게 둘 다 시켜 <b class="k1">교차검증</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

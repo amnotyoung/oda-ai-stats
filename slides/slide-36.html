@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:11pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+#tabs{display:inline-flex;border:1px solid var(--border);border-radius:7pt;overflow:hidden;}
+#tabs button{border:none;background:#fff;padding:5pt 10pt;font-size:9pt;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit;border-right:1px solid var(--border);}
+#tabs button:last-child{border-right:none;}
+#tabs button.on{background:var(--accent);color:#fff;}
+.vd{border-radius:7pt;padding:8pt 11pt;font-size:9.5pt;line-height:1.4;color:var(--muted);border:1px solid var(--border);background:#fff;transition:all .2s;}
+.vd.on{background:#FCF4F4;border-color:#F1C7C7;color:var(--ink);font-weight:600;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 05</span><h4>🖼️ 시각화로 잡기</h4></div><p class="pg">36 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:19pt;margin-bottom:3pt;">한 데이터, <span class="k1">여러 그림</span> — 각도를 바꾸면 보인다</h2>
+    <p style="font-size:9.5pt;color:var(--muted);margin-bottom:9pt;">같은 오류 데이터(베트남 GDP ×1,000)를 세 방식으로. <b>어느 그림에서든 튄다.</b></p>
+    <div style="flex:1;display:grid;grid-template-columns:1.5fr 1fr;gap:14pt;">
+      <div class="card" style="padding:8pt 11pt 6pt;display:flex;flex-direction:column;">
+        <svg id="viz" viewBox="0 0 320 176" style="width:100%;flex:1;"></svg>
+        <div style="display:flex;justify-content:center;margin-top:5pt;">
+          <div id="tabs">
+            <button class="on" onclick="setViz(0)">📍 산점도</button>
+            <button onclick="setViz(1)">📊 히스토그램</button>
+            <button onclick="setViz(2)">📦 박스플롯</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:8pt;">
+        <div class="vd on" id="vd0">📍 <b>산점도</b> — 추세에서 벗어나 오른쪽으로 튄 점</div>
+        <div class="vd" id="vd1">📊 <b>히스토그램</b> — 분포에서 동떨어진 외딴 막대</div>
+        <div class="vd" id="vd2">📦 <b>박스플롯</b> — 수염 밖 유일한 이상치(outlier)</div>
+        <div style="background:var(--navy);border-radius:8pt;padding:9pt 12pt;margin-top:2pt;">
+          <p style="font-size:9.5pt;color:#EAF1FB;font-weight:600;line-height:1.4;">한 각도로 안 보여도, <b style="color:#7DB0FF;">여러 그림</b>으로 그리면 같은 이상치가 거듭 드러난다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/wdi2021.js"></script>
+  <script>
+  (function(){
+    var D=(window.WDI2021||[]);
+    var W=320,H=176,padL=30,padR=12,padT=12,padB=26;
+    var lgMin=5.2,lgMax=16.1,leMin=37,leMax=87;
+    function sx(v){return padL+(v-lgMin)/(lgMax-lgMin)*(W-padL-padR);}
+    function syLife(v){return (H-padB)-(v-leMin)/(leMax-leMin)*(H-padT-padB);}
+    function err(){return D.map(function(d){return {lg:d.code==="VNM"?d.lg+Math.log(1000):d.lg,life:d.life,code:d.code};});}
+    function xAxis(lbl){return '<line x1="'+padL+'" y1="'+(H-padB)+'" x2="'+(W-6)+'" y2="'+(H-padB)+'" stroke="#C9D4E2" stroke-width="1.2"/><text x="'+((padL+W)/2)+'" y="'+(H-8)+'" text-anchor="middle" font-size="8" fill="#6B7C90" font-family="Pretendard">'+lbl+'</text>';}
+    function yAxis(){return '<line x1="'+padL+'" y1="'+padT+'" x2="'+padL+'" y2="'+(H-padB)+'" stroke="#C9D4E2" stroke-width="1.2"/>';}
+    function scatter(){
+      var s=yAxis()+xAxis('소득 (log 1인당 GDP) →');
+      s+='<text x="14" y="'+((padT+H-padB)/2)+'" text-anchor="middle" font-size="8" fill="#6B7C90" font-family="Pretendard" transform="rotate(-90 14 '+((padT+H-padB)/2)+')">기대수명 →</text>';
+      err().forEach(function(d){var hi=d.code==="VNM";s+='<circle cx="'+sx(d.lg).toFixed(1)+'" cy="'+syLife(d.life).toFixed(1)+'" r="'+(hi?5.5:2.4)+'" fill="'+(hi?"#DC2626":"#9FBBDD")+'"'+(hi?' stroke="#fff" stroke-width="1.1"':'')+'/>';});
+      var v=err().find(function(d){return d.code==="VNM";});
+      s+='<text x="'+(sx(v.lg)-9).toFixed(1)+'" y="'+(syLife(v.life)+3).toFixed(1)+'" text-anchor="end" font-size="8.5" font-weight="700" fill="#DC2626" font-family="Pretendard">베트남 ×1000</text>';
+      return s;
+    }
+    function hist(){
+      var bw=0.5,bins={};
+      err().forEach(function(d){var k=Math.round(Math.floor(d.lg/bw)*bw*10)/10;bins[k]=(bins[k]||0)+1;});
+      var ks=Object.keys(bins).map(Number);var maxc=0;ks.forEach(function(k){if(bins[k]>maxc)maxc=bins[k];});
+      var s=yAxis()+xAxis('소득 (log 1인당 GDP) →');
+      s+='<text x="14" y="'+((padT+H-padB)/2)+'" text-anchor="middle" font-size="8" fill="#6B7C90" font-family="Pretendard" transform="rotate(-90 14 '+((padT+H-padB)/2)+')">국가 수 →</text>';
+      ks.forEach(function(k){var c=bins[k];var h=c/maxc*(H-padT-padB-6);var x0=sx(k),x1=sx(k+bw);var vnm=(15.12>=k&&15.12<k+bw);
+        s+='<rect x="'+x0.toFixed(1)+'" y="'+((H-padB)-h).toFixed(1)+'" width="'+Math.max(1.5,(x1-x0-1)).toFixed(1)+'" height="'+h.toFixed(1)+'" fill="'+(vnm?"#DC2626":"#9FBBDD")+'" rx="1"/>';
+        if(vnm)s+='<text x="'+((x0+x1)/2).toFixed(1)+'" y="'+((H-padB)-h-4).toFixed(1)+'" text-anchor="middle" font-size="8.5" font-weight="700" fill="#DC2626" font-family="Pretendard">베트남</text>';});
+      return s;
+    }
+    function box(){
+      var vals=err().map(function(d){return d.lg;}).sort(function(a,b){return a-b;});
+      function q(p){var i=p*(vals.length-1),lo=Math.floor(i);return vals[lo]+(vals[Math.min(lo+1,vals.length-1)]-vals[lo])*(i-lo);}
+      var Q1=q(.25),med=q(.5),Q3=q(.75),IQR=Q3-Q1,whi=Q3+1.5*IQR;
+      var inl=vals.filter(function(v){return v<=whi;});var loW=inl[0],hiW=inl[inl.length-1];
+      var out=vals.filter(function(v){return v>whi;});
+      var midY=(padT+(H-padB))/2,bh=22;
+      var s=xAxis('소득 (log 1인당 GDP) →');
+      // whisker line + caps
+      s+='<line x1="'+sx(loW).toFixed(1)+'" y1="'+midY+'" x2="'+sx(hiW).toFixed(1)+'" y2="'+midY+'" stroke="#7C93B0" stroke-width="1.3"/>';
+      s+='<line x1="'+sx(loW).toFixed(1)+'" y1="'+(midY-8)+'" x2="'+sx(loW).toFixed(1)+'" y2="'+(midY+8)+'" stroke="#7C93B0" stroke-width="1.3"/>';
+      s+='<line x1="'+sx(hiW).toFixed(1)+'" y1="'+(midY-8)+'" x2="'+sx(hiW).toFixed(1)+'" y2="'+(midY+8)+'" stroke="#7C93B0" stroke-width="1.3"/>';
+      // box
+      s+='<rect x="'+sx(Q1).toFixed(1)+'" y="'+(midY-bh/2)+'" width="'+(sx(Q3)-sx(Q1)).toFixed(1)+'" height="'+bh+'" fill="#C7D9F0" stroke="#5B8DEF" stroke-width="1.3" rx="2"/>';
+      s+='<line x1="'+sx(med).toFixed(1)+'" y1="'+(midY-bh/2)+'" x2="'+sx(med).toFixed(1)+'" y2="'+(midY+bh/2)+'" stroke="#1D4ED8" stroke-width="1.8"/>';
+      // outliers
+      out.forEach(function(v){var hi=v>14;s+='<circle cx="'+sx(v).toFixed(1)+'" cy="'+midY+'" r="'+(hi?5.5:3)+'" fill="'+(hi?"#DC2626":"#9FBBDD")+'"'+(hi?' stroke="#fff" stroke-width="1.1"':'')+'/>';if(hi)s+='<text x="'+sx(v).toFixed(1)+'" y="'+(midY-9)+'" text-anchor="middle" font-size="8.5" font-weight="700" fill="#DC2626" font-family="Pretendard">베트남 ×1000</text>';});
+      s+='<text x="'+sx(med).toFixed(1)+'" y="'+(midY+bh/2+12)+'" text-anchor="middle" font-size="7.5" fill="#6B7C90" font-family="Pretendard">정상 분포</text>';
+      return s;
+    }
+    var R=[scatter,hist,box];
+    window.setViz=function(i){
+      document.getElementById("viz").innerHTML=R[i]();
+      document.querySelectorAll("#tabs button").forEach(function(b,j){b.className=j===i?"on":"";});
+      [0,1,2].forEach(function(j){document.getElementById("vd"+j).className=j===i?"vd on":"vd";});
+    };
+    window.setViz(0);
+  })();
+  </script>
+</body>
+</html>

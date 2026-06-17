@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:13pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+table{width:100%;border-collapse:collapse;}
+td,th{text-align:left;padding:5.7pt 9pt;vertical-align:middle;}
+tbody td{font-size:10pt;color:var(--ink2);line-height:1.4;}
+tbody td:first-child{font-weight:700;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 01</span><h4>Python vs STATA</h4></div><p class="pg">08 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:21pt;margin-bottom:3pt;">그 한 문장에서 갈라지는 <span class="k1">7가지 차이</span></h2>
+    <p style="font-size:10pt;color:var(--muted);margin-bottom:9pt;">근본 차이(전용 SW vs 범용 언어)가 현장에서 어떻게 나타나는가.</p>
+    <table>
+      <thead>
+        <tr style="border-bottom:1.5pt solid var(--ink);">
+          <th style="font-size:9.5pt;color:var(--muted);font-weight:700;width:20%;">차이</th>
+          <th style="font-size:9.5pt;color:var(--navy);font-weight:800;width:40%;">STATA · 전용 SW</th>
+          <th style="font-size:9.5pt;color:var(--accent);font-weight:800;width:40%;">Python · 범용 언어</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);"><td>데이터 방식</td><td>한 데이터셋이 작업공간에 상주</td><td>이름 붙은 객체 여러 개 동시 조작</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td>명령 vs 함수</td><td>동사형 명령어 — 문장처럼 읽힘</td><td>함수·메서드 조합 — 유연하나 조립</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td>통계 출력</td><td>출판 수준 표준 표 기본 제공</td><td>직접 가공 · 무한 커스터마이즈</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td>가능 범위</td><td>통계·계량 안에서 깊다</td><td>수집·API·ML·텍스트·배포까지</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td>비용</td><td>상업용 유료 라이선스</td><td>완전 무료 오픈소스</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td>재현성</td><td>.do + .log — 계량 저널 표준</td><td>노트북 · 스크립트 + Git</td></tr>
+        <tr style="background:var(--soft);"><td style="color:var(--accent2);">학습곡선 ★</td><td style="color:var(--ink);font-weight:600;">낮다 — 한 줄로 고급 분석, 입문친화</td><td style="color:var(--ink);font-weight:600;">높다 → <b class="k1">AI가 무력화</b></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:10pt;color:var(--muted);margin-top:9pt;">★ 7번 <b>학습곡선</b>을 기억해 두세요 — 잠시 뒤 이 차이를 <b class="k1">무력화</b>시킵니다.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 04-A</span><h4>이원 고정효과</h4></div><p class="pg">28 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:22pt;margin-bottom:4pt;">식별의 문제 — <span class="k1">진짜 효과는?</span></h2>
+    <p style="font-size:10.5pt;color:var(--muted);margin-bottom:14pt;">소득과 기대수명은 시간이 지나며 함께 오른다. 단순 회귀는 둘을 <b>혼동(confounding)</b>한다.</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12pt;">
+      <p style="font-size:10pt;color:var(--muted);font-weight:700;">소득→기대수명 관계에 섞여 있는 두 교란</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:13pt;">
+        <div class="card" style="padding:15pt 17pt;">
+          <div style="display:flex;align-items:center;gap:10pt;margin-bottom:8pt;"><p style="font-size:19pt;line-height:1.5;">🌍</p><h3 style="font-size:15pt;">국가 고유차</h3></div>
+          <p style="font-size:11pt;line-height:1.55;">제도 · 기후 · 문화 — 나라마다 다르고, 잘 변하지 않는 특성.</p>
+        </div>
+        <div class="card" style="padding:15pt 17pt;">
+          <div style="display:flex;align-items:center;gap:10pt;margin-bottom:8pt;"><p style="font-size:19pt;line-height:1.5;">📈</p><h3 style="font-size:15pt;">전세계 시대추세</h3></div>
+          <p style="font-size:11pt;line-height:1.55;">기술 발전 · 의료 발달 — 모든 나라가 함께 겪는 시간 효과.</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:13pt;background:var(--navy);border-radius:8pt;padding:12pt 16pt;">
+      <p style="font-size:11.5pt;color:#EAF1FB;font-weight:600;line-height:1.45;">해결 — <b style="color:#7DB0FF;">고정효과(Fixed Effects)</b>로 이 두 교란을 걷어내고 <b style="color:#fff;">'소득의 순효과'</b>에 다가간다.</p>
+    </div>
+  </div>
+</body>
+</html>

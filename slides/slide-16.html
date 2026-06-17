@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 02</span><h4>데이터 소개</h4></div><p class="pg">16 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:22pt;margin-bottom:4pt;">'진짜 데이터'라서 생기는 것들</h2>
+    <p style="font-size:10.5pt;color:var(--muted);margin-bottom:14pt;">합성 데이터엔 없는 현실. 그리고 이게 모듈 2 정제와 모듈 5 검증의 진짜 소재.</p>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:13pt;">
+      <div class="card" style="padding:15pt 16pt;display:flex;flex-direction:column;">
+        <p style="font-size:20pt;line-height:1.55;margin-bottom:2pt;">🕳️</p>
+        <h3 style="font-size:14pt;margin:9pt 0 7pt;">결측이 있다</h3>
+        <p style="font-size:10.5pt;line-height:1.55;">일부 국가·연도에 값이 빠져 있다. <b>under5_mort 약 10%</b>, <b>prim_enroll 약 23%</b>.</p>
+      </div>
+      <div class="card" style="padding:15pt 16pt;display:flex;flex-direction:column;">
+        <p style="font-size:20pt;line-height:1.55;margin-bottom:2pt;">🏷️</p>
+        <h3 style="font-size:14pt;margin:9pt 0 7pt;">분류에 빈칸도</h3>
+        <p style="font-size:10.5pt;line-height:1.55;">일부 국가는 소득그룹이 <b>'Not classified'</b>. "진짜 데이터는 늘 손이 간다."</p>
+      </div>
+      <div class="card" style="padding:15pt 16pt;display:flex;flex-direction:column;">
+        <p style="font-size:20pt;line-height:1.55;margin-bottom:2pt;">🛰️</p>
+        <h3 style="font-size:14pt;margin:9pt 0 7pt;">어떻게 받았나</h3>
+        <p style="font-size:10.5pt;line-height:1.55;">World Bank API를 Python <b>wbgapi</b>로 수집. → 모듈 4-B에서 <b>직접</b> 해본다.</p>
+      </div>
+    </div>
+    <div style="margin-top:13pt;background:var(--surface2);border:1px solid var(--border);border-radius:8pt;padding:11pt 16pt;">
+      <p style="font-size:11pt;color:var(--ink);line-height:1.5;">결측·빈칸이 보여도 당황 마세요. <b>진짜 데이터라서</b> 그런 거고, 그걸 다루는 게 실무다. <b class="k1">오히려 깨끗하기만 한 데이터가 더 수상하다.</b></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;
+  --accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;
+  --code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;
+  --ok:#15A34A;--bad:#DC2626;--ok-bg:#E9F7EF;--bad-bg:#FBEDED;
+}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.15;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+.num{width:21pt;height:21pt;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.num p{font-size:10pt;font-weight:800;color:var(--accent2);line-height:1.35;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 0</span><h4>오프닝</h4></div><p class="pg">04 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:23pt;margin-bottom:5pt;">이 강의의 <span class="k1">두 축</span></h2>
+    <p style="font-size:11pt;color:var(--muted);margin-bottom:14pt;">난이도는 <b>AI</b>가 낮추고, 신뢰는 <b>인간</b>이 높인다.</p>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:13pt;">
+      <div class="card" style="padding:15pt 17pt;display:flex;flex-direction:column;">
+        <p style="font-size:9pt;color:var(--accent2);font-weight:800;letter-spacing:0.04em;margin-bottom:3pt;">축 ①</p>
+        <h3 style="font-size:15.5pt;margin-bottom:13pt;">AI가 난이도를 낮춘다</h3>
+        <div style="display:flex;flex-direction:column;gap:9pt;flex:1;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:10pt;"><div class="num"><p>1</p></div><p style="font-size:11.5pt;"><b>설계</b> — 무엇을·왜 분석할지 <span style="color:var(--muted);">· 사람</span></p></div>
+          <div style="display:flex;align-items:center;gap:10pt;"><div class="num"><p>2</p></div><p style="font-size:11.5pt;"><b>생성</b> — 코드를 AI에게 시킨다 <span style="color:var(--muted);">· AI·외부망</span></p></div>
+          <div style="display:flex;align-items:center;gap:10pt;"><div class="num"><p>3</p></div><p style="font-size:11.5pt;"><b>검증·해석</b> — 3대 무기로 <span style="color:var(--muted);">· 사람</span></p></div>
+        </div>
+      </div>
+      <div class="card" style="padding:15pt 17pt;display:flex;flex-direction:column;background:var(--navy);border-color:#2B3B53;">
+        <p style="font-size:9pt;color:#7DB0FF;font-weight:800;letter-spacing:0.04em;margin-bottom:3pt;">축 ②</p>
+        <h3 style="font-size:15.5pt;margin-bottom:13pt;color:#fff;">최종 판단은 인간 — 3대 무기</h3>
+        <div style="display:flex;flex-direction:column;gap:11pt;flex:1;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:10pt;"><p style="font-size:17pt;line-height:1.35;">🖼️</p><p style="font-size:11.5pt;color:#D7E3F2;"><b style="color:#fff;">시각화</b> — 그림으로 보면 오류가 보인다</p></div>
+          <div style="display:flex;align-items:center;gap:10pt;"><p style="font-size:17pt;line-height:1.35;">🧭</p><p style="font-size:11.5pt;color:#D7E3F2;"><b style="color:#fff;">도메인 지식</b> — "그럴 리 없다"를 안다</p></div>
+          <div style="display:flex;align-items:center;gap:10pt;"><p style="font-size:17pt;line-height:1.35;">👥</p><p style="font-size:11.5pt;color:#D7E3F2;"><b style="color:#fff;">동료 회람</b> — 여러 눈으로 함께 잡는다</p></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12pt;border:1px solid var(--border);border-radius:8pt;padding:11pt 16pt;background:var(--surface2);">
+      <p style="font-size:11.5pt;color:var(--ink);font-weight:600;text-align:center;">"AI가 분석을 <b class="k1">쉽게</b> 만들어도, <b class="k1">맞게</b> 만드는 건 여전히 인간이다."</p>
+    </div>
+  </div>
+</body>
+</html>

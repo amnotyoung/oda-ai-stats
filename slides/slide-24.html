@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+.hist{display:flex;align-items:flex-end;gap:4pt;flex:1;min-height:0;}
+.hist span{flex:1;border-radius:3pt 3pt 0 0;transition:height .45s cubic-bezier(.4,0,.2,1),background .3s;}
+#tg{display:inline-flex;border:1px solid var(--border);border-radius:7pt;overflow:hidden;}
+#tg button{border:none;background:#fff;padding:5pt 13pt;font-size:9.5pt;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit;}
+#tg button.on{background:var(--accent);color:#fff;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 03</span><h4>③ 회귀 설계</h4></div><p class="pg">24 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:21pt;margin-bottom:3pt;">③ 회귀 설계 — <span class="k1">왜 로그변환?</span></h2>
+    <p style="font-size:10pt;color:var(--muted);margin-bottom:11pt;">회귀 전에 사람이 내리는 판단. 버튼으로 분포를 바꿔보라 — 왜도가 사라진다.</p>
+    <div style="flex:1;display:grid;grid-template-columns:1.5fr 1fr;gap:15pt;">
+      <div class="card" style="padding:12pt 15pt;display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:center;margin-bottom:10pt;">
+          <div id="tg">
+            <button id="bRaw" class="on" onclick="setLog(false)">gdp_pc 원본</button>
+            <button id="bLog" onclick="setLog(true)">log(gdp_pc)</button>
+          </div>
+        </div>
+        <div class="hist" id="hist">
+          <span style="height:96%;"></span><span style="height:62%;"></span><span style="height:36%;"></span><span style="height:22%;"></span><span style="height:14%;"></span><span style="height:9%;"></span><span style="height:6%;"></span><span style="height:4%;"></span><span style="height:3%;"></span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:11pt;">
+        <div class="card" style="padding:13pt 15pt;">
+          <p style="font-size:9pt;color:var(--muted);font-weight:700;margin-bottom:3pt;">왜도(skewness)</p>
+          <p id="skew" style="font-size:30pt;font-weight:800;color:var(--bad);line-height:1.2;">≈ 2.9</p>
+          <p id="desc" style="font-size:10pt;color:var(--ink2);line-height:1.5;margin-top:4pt;">한쪽으로 <b>크게 쏠림</b> — 평균이 분포를 잘 대표하지 못한다.</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12pt;background:var(--navy);border-radius:8pt;padding:11pt 16pt;">
+      <p style="font-size:11pt;color:#EAF1FB;font-weight:600;line-height:1.45;">AI는 이걸 <b style="color:#fff;">자동으로 안 할 수 있다.</b> "로그를 취할까?"는 데이터를 아는 사람의 판단 — <b style="color:#7DB0FF;">설계는 사람 몫.</b></p>
+    </div>
+  </div>
+  <script>
+  var RAW=[96,62,36,22,14,9,6,4,3], LOG=[13,32,60,88,100,86,58,32,14];
+  var bars=document.querySelectorAll('#hist span');
+  function setLog(isLog){
+    var v=isLog?LOG:RAW;
+    bars.forEach(function(b,i){b.style.height=v[i]+'%';b.style.background=isLog?'#2563EB':'#9AAEC6';});
+    document.getElementById('skew').textContent=isLog?'≈ 0.2':'≈ 2.9';
+    document.getElementById('skew').style.color=isLog?'#15A34A':'#DC2626';
+    document.getElementById('desc').innerHTML=isLog?'<b>종 모양</b>에 가까워짐 — 회귀의 해석도 쉬워진다.':'한쪽으로 <b>크게 쏠림</b> — 평균이 분포를 잘 대표하지 못한다.';
+    document.getElementById('bRaw').className=isLog?'':'on';
+    document.getElementById('bLog').className=isLog?'on':'';
+  }
+  setLog(false);
+  </script>
+</body>
+</html>

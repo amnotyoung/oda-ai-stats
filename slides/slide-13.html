@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--code-bg:#0E1A2B;--code-ink:#DCE6F2;--kw:#7DA9FF;--str:#8DE0A6;--com:#62758B;--num:#F4C36B;--fn:#C9A8FF;--op:#9FB4CC;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+.stat{font-size:38pt;font-weight:800;color:var(--accent);letter-spacing:-0.03em;line-height:1.25;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 02</span><h4>데이터 소개</h4></div><p class="pg">13 / 39</p></div>
+  <div class="body">
+    <h2 style="font-size:22pt;margin-bottom:5pt;">WDI란 무엇인가</h2>
+    <p style="font-size:10.5pt;color:var(--ink2);margin-bottom:14pt;line-height:1.5;"><b>World Bank WDI</b>(World Development Indicators) — 세계은행 대표 개발지표 DB. 보고서의 <b>'1인당 GDP'·'기대수명'</b> 출처가 십중팔구 여기다. 오늘은 그 진짜 데이터를 직접 만진다.</p>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:13pt;">
+      <div class="card" style="padding:16pt 17pt;display:flex;flex-direction:column;justify-content:center;">
+        <p class="stat">200<span style="font-size:22pt;">+</span></p>
+        <p style="font-size:11pt;color:var(--ink);font-weight:700;margin-top:7pt;">개국 커버리지</p>
+        <p style="font-size:9.5pt;color:var(--muted);margin-top:3pt;">전 세계 거의 모든 나라</p>
+      </div>
+      <div class="card" style="padding:16pt 17pt;display:flex;flex-direction:column;justify-content:center;">
+        <p class="stat">1,486</p>
+        <p style="font-size:11pt;color:var(--ink);font-weight:700;margin-top:7pt;">개 지표</p>
+        <p style="font-size:9.5pt;color:var(--muted);margin-top:3pt;">소득·보건·교육·인구·환경</p>
+      </div>
+      <div class="card" style="padding:16pt 17pt;display:flex;flex-direction:column;justify-content:center;">
+        <p class="stat">1960<span style="font-size:22pt;">~</span></p>
+        <p style="font-size:11pt;color:var(--ink);font-weight:700;margin-top:7pt;">현재까지</p>
+        <p style="font-size:9.5pt;color:var(--muted);margin-top:3pt;">60년+ 시계열 · 공개·무료</p>
+      </div>
+    </div>
+    <div style="margin-top:13pt;background:var(--surface2);border:1px solid var(--border);border-radius:8pt;padding:11pt 16pt;display:flex;align-items:center;gap:12pt;">
+      <span style="display:inline-block;padding:3.5pt 10pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:9pt;font-weight:700;white-space:nowrap;">📥 직접 받기</span>
+      <p style="font-size:10pt;color:var(--ink);line-height:1.45;"><b style="font-family:'SF Mono',Menlo,Consolas,monospace;color:var(--accent2);">databank.worldbank.org/source/world-development-indicators</b> · data.worldbank.org — 강의 중 <b>실제 페이지를 열어</b> 데이터셋을 보여주세요.</p>
+    </div>
+  </div>
+</body>
+</html>
