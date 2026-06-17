@@ -50,7 +50,7 @@
 - Slide 27 — Section Divider: 모듈 4
 - Slide 28 — Content: 4-A 식별의 문제 (소득·기대수명 동반 상승, 교란)
 - Slide 29 — Statistics: 4-A 통제로 답이 바뀐다 (4.59→3.54→1.26 계단)
-- Slide 30 — Code Compare: 4-A 코드 (xtreg+i.year ↔ C(economy)+C(year))
+- Slide 30 — Code Compare: 4-A 코드 (xtreg+i.year ↔ PanelOLS EntityEffects+TimeEffects)
 - Slide 31 — Content: 4-A 포인트 (이원FE = DiD 엔진, KOICA M&E)
 - Slide 32 — Content: 4-B 라이브 수집 + 랜덤포레스트 (RF R²0.96 > OLS 0.82)
 - Slide 33 — Table: 4-C 도구 선택은 환경·작업으로

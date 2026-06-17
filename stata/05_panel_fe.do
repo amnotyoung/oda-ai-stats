@@ -1,7 +1,7 @@
 *===============================================================================
 * 05_panel_fe.do  ·  국가 고정효과 패널 — 고급 분석 (모듈 4-A)
 * base STATA · v14+ · 오프라인.  ✅ Stata 19에서 실행 검증 완료(폐쇄망 MP에서도 동일).
-*  → Python 대응: notebooks/03_panel_fe.ipynb (Python은 국가 더미를 다 넣어야 함)
+*  → Python 대응: notebooks/03_panel_fe.ipynb (linearmodels PanelOLS — EntityEffects+TimeEffects)
 *===============================================================================
 version 14
 set more off

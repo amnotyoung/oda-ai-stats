@@ -157,37 +157,51 @@ write_nb("03_panel_fe.ipynb", [
 
 > 고급 계량 분석도 AI 도움으로 **양쪽 도구에서** 할 수 있다. 국가×연도 패널의 고정효과를
 > Python으로, 그리고 STATA로 — **둘 다 같은 결과**. 도구는 우열이 아니라 **환경**으로 고른다."""),
+    md("""## 0) 준비 — 패널 전용 라이브러리 설치
+`linearmodels`는 고정효과를 전용으로 다룬다(STATA `xtreg`에 해당). Colab엔 기본 없어 한 번만 설치."""),
+    code('''# linearmodels = 패널(고정효과) 전용 라이브러리. Colab에 없으면 자동 설치(~20초)
+try:
+    import linearmodels
+except ModuleNotFoundError:
+    import subprocess, sys
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "linearmodels"]); import linearmodels'''),
     code(f'''import pandas as pd, numpy as np
-import statsmodels.formula.api as smf
+from linearmodels.panel import PooledOLS, PanelOLS   # 패널 회귀(합동 · 고정효과)
 df = pd.read_csv("{RAW}").dropna(subset=["gdp_pc","life_exp"])  # 불러오며 핵심 결측 제거
 df["log_gdp"] = np.log(df["gdp_pc"])                            # 로그변환
+# 패널 구조 선언: (개체=국가, 시간=연도) 2단 인덱스를 주면 linearmodels가 패널로 인식
+panel = df.set_index(["economy", "year"])
 print("국가:", df["economy"].nunique(), "· 연도:", df["year"].nunique(), "· 행:", len(df))  # 패널 규모'''),
     md("""## 문제 — 국가·시대의 교란을 통제하려면? (식별의 문제)
 소득과 기대수명은 둘 다 **시간이 가며 함께 오른다.** 단순 상관엔 *국가 고유차*와 *전세계 시대추세*가
 뒤섞여 있다. 진짜 효과를 보려면 이 둘을 **고정효과**로 걷어내야 한다 — 임팩트평가의 핵심 아이디어.
 
-> **고정효과(FE)** = 국가/연도별 더미를 넣어 그 집단의 *평균 차이*를 통째로 빼는 것."""),
-    md("### (1) 통제 안 함 — 단순 회귀(pooled)"),
-    code("""# (1) 아무것도 통제 안 함 — 모든 국가·연도를 한 덩어리로 회귀
-pooled = smf.ols("life_exp ~ log_gdp", data=df).fit()
-print("pooled         log_gdp =", round(pooled.params["log_gdp"], 2))  # .params = 추정된 계수"""),
+> **고정효과(FE)** = 국가/연도별 평균 차이를 통째로 빼는 것. `linearmodels`에선 `EntityEffects`(국가)·
+> `TimeEffects`(연도)만 적으면 더미를 일일이 안 만들어도 흡수한다. (개념상 국가/연도 더미를 전부 넣는 것과 동일)"""),
+    md("### (1) 통제 안 함 — 합동(pooled) 회귀"),
+    code('''# (1) 아무것도 통제 안 함 — 모든 국가·연도를 한 덩어리로 ("1 +"은 절편 항)
+pooled = PooledOLS.from_formula("life_exp ~ 1 + log_gdp", panel).fit()
+print("pooled         log_gdp =", round(pooled.params["log_gdp"], 2))'''),
     md("### (2) 국가 고정효과 — 국가 고유차 통제"),
-    code("""# (2) C(economy) = 국가별 더미 추가 → 국가 고유차(제도·기후 등)를 통제
-fe = smf.ols("life_exp ~ log_gdp + C(economy)", data=df).fit()
-print("국가 FE        log_gdp =", round(fe.params["log_gdp"], 2), "(국가 고유효과 흡수)")"""),
+    code('''# (2) EntityEffects = 국가 고정효과(국가 고유차 흡수)
+#     cluster_entity=True = 국가 단위 클러스터 표준오차(STATA vce(cluster)와 대응)
+fe = PanelOLS.from_formula("life_exp ~ log_gdp + EntityEffects", panel)\\
+             .fit(cov_type="clustered", cluster_entity=True)
+print("국가 FE        log_gdp =", round(fe.params["log_gdp"], 2), "(국가 고유효과 흡수)")'''),
     md("""### (3) **이원 고정효과** — 국가 + 연도 동시 통제 (고급)
-전세계가 함께 좋아진 **시대추세**(`C(year)`)까지 빼면 효과가 또 달라진다."""),
-    code("""# (3) C(year) 추가 → 국가 + 연도 동시 통제(전세계 공통 시대추세까지 제거)
-twfe = smf.ols("life_exp ~ log_gdp + C(economy) + C(year)", data=df).fit()
+연도 고정효과(`TimeEffects`)까지 더하면 전세계 공통 **시대추세**가 빠지며 효과가 또 달라진다."""),
+    code('''# (3) + TimeEffects = 연도 고정효과 → 국가+연도 동시 통제(전세계 공통 시대추세 제거)
+twfe = PanelOLS.from_formula("life_exp ~ log_gdp + EntityEffects + TimeEffects", panel)\\
+               .fit(cov_type="clustered", cluster_entity=True)
 print("이원 FE(+연도) log_gdp =", round(twfe.params["log_gdp"], 2), "(시대추세까지 흡수)")
-print("\\n→ 4.59 → 3.54 → 1.26 : 무엇을 통제하느냐에 따라 답이 바뀐다(식별의 문제).")"""),
+print("\\n→ 4.59 → 3.54 → 1.26 : 무엇을 통제하느냐에 따라 답이 바뀐다(식별의 문제).")'''),
     md("""### (4) STATA에선 — 같은 분석
 ```stata
 encode economy, gen(country_id)
 xtset country_id year
 xtreg life_exp log_gdp i.year, fe vce(cluster country_id)
 ```
-- `i.year`로 연도효과까지 한 번에. base STATA — **폐쇄망에서 인터넷 없이 실행** ✅  코드 → `stata/05_panel_fe.do`
+- `xtreg ..., fe`가 `PanelOLS`의 `EntityEffects`에, `i.year`가 `TimeEffects`에 대응. base STATA — **폐쇄망에서 인터넷 없이 실행** ✅  코드 → `stata/05_panel_fe.do`
 - 두 도구 계수가 **정확히 일치**(1.262)한다 — 교차검증.
 
 ---

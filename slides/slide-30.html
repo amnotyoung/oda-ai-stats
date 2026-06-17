@@ -37,10 +37,11 @@ pre.code{background:var(--code-bg);border-radius:8pt;padding:12pt 14pt;color:var
       fe <span class="k">vce</span>(cluster country_id)</pre>
       </div>
       <div style="display:flex;flex-direction:column;">
-        <div style="margin-bottom:8pt;"><span class="tag" style="background:var(--accent);color:#fff;">Python · statsmodels</span></div>
-        <pre class="code">smf.<span class="f">ols</span>(<span class="s">"life_exp ~ log_gdp"</span>
-        <span class="s">"+ C(economy) + C(year)"</span>,
-        data=df).<span class="f">fit</span>()</pre>
+        <div style="margin-bottom:8pt;"><span class="tag" style="background:var(--accent);color:#fff;">Python · linearmodels</span></div>
+        <pre class="code">PanelOLS.<span class="f">from_formula</span>(
+   <span class="s">"life_exp ~ log_gdp"</span>
+   <span class="s">"+ EntityEffects + TimeEffects"</span>,
+   panel).<span class="f">fit</span>()</pre>
       </div>
     </div>
     <div style="margin-top:12pt;background:var(--navy);border-radius:8pt;padding:11pt 16pt;display:flex;align-items:center;gap:16pt;">
