@@ -19,13 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE: This repository is multi-licensed.
-- Code (stata/, notebooks/, scripts/): MIT License (above).
-- Educational materials (slides/, handouts/): CC BY 4.0
-  (https://creativecommons.org/licenses/by/4.0/).
-- Data (data/wdi_panel.csv): World Bank World Development Indicators,
-  CC BY 4.0, (c) World Bank.
-See the "라이선스" section in README.md for details.
