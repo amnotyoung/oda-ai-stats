@@ -31,6 +31,25 @@
 
 ---
 
+## 🖥️ 외부망 STATA 실습 (체험판 STATA + 인터넷)
+
+STATA엔 Colab 같은 웹 실행기가 없지만, **데이터를 GitHub에서 직접 불러오면** 다운로드·경로설정 없이 실습할 수 있다.
+Stata 명령창(Command)에 붙여넣기:
+
+```stata
+* ① 한 번만 — 데이터 출처를 GitHub URL로 지정
+do "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/stata/lecture_start.do"
+
+* ② 모듈 실행 (예: 회귀)
+do "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/stata/04_regression.do"
+```
+
+- **데이터 다운로드 X · 작업폴더 설정 X** — 데이터가 URL로 바로 스트리밍된다.
+- 코드를 **읽으며** 배우려면: GitHub에서 그 `.do`를 열어 복사 → Stata 편집기에 붙여넣고 실행(①을 한 번 먼저).
+- ⚠ **인터넷 필요**. 오프라인(폐쇄망)에선 아래 로컬 방식.
+
+---
+
 ## 🏢 폐쇄망 적용 — STATA로 현업에 (오프라인)
 
 1. 이 저장소를 **압축 다운로드**(`Code → Download ZIP`)하거나 `stata/` + `data/wdi_panel.csv`를 받는다.
@@ -53,9 +72,11 @@ oda-ai-stats/
 │  ├─ 03_panel_fe.ipynb            모듈4A 이원 고정효과(고급 인과추론)
 │  ├─ 04_python_strength.ipynb     모듈4B 라이브 수집 + 머신러닝(Python 고급)
 │  └─ 05_human_verification.ipynb  모듈5  인간 검증력(시각화)
-├─ stata/            폐쇄망 반입용 (.do, base STATA·오프라인)
-│  ├─ 00_master.do  01_load_clean.do  02_crosstab.do
-│  ├─ 03_group_compare.do  04_regression.do  05_panel_fe.do
+├─ stata/            STATA 코드 (.do, base STATA)
+│  ├─ lecture_start.do   ← 외부망 실습용(데이터 URL 지정, 다운로드 불필요)
+│  ├─ 00_master.do       ← 폐쇄망 로컬 일괄 실행
+│  ├─ 01_load_clean.do  02_crosstab.do  03_group_compare.do
+│  ├─ 04_regression.do  05_panel_fe.do
 ├─ data/
 │  └─ wdi_panel.csv    World Bank WDI 패널(실데이터, 약 4,991행)
 ├─ handouts/
