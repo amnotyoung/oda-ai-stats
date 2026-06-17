@@ -120,3 +120,15 @@ oda-ai-stats/
 `pop`(인구), `prim_enroll`(초등 취학률 % gross).
 
 > 출처: World Bank World Development Indicators. 재생성: `python scripts/build_wdi_data.py` (wbgapi 필요).
+
+---
+
+## 📄 라이선스
+
+이 저장소는 부분별로 라이선스가 다르다.
+
+| 대상 | 라이선스 | 비고 |
+|---|---|---|
+| **코드** (`stata/` · `notebooks/` · `scripts/`) | [MIT](LICENSE) | © 2026 amnotyoung — 자유 사용·수정·재배포 (저작권 표시 유지) |
+| **교육 자료** (`slides/` · `handouts/`) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | © 2026 amnotyoung — 출처 표기 시 자유 사용·수정·재배포 |
+| **데이터** (`data/wdi_panel.csv`) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | © World Bank, [World Development Indicators](https://databank.worldbank.org/source/world-development-indicators) (wbgapi로 수집) |
