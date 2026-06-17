@@ -44,17 +44,25 @@
 
 ## 🖥️ 외부망 STATA 실습 (체험판 STATA + 인터넷)
 
-STATA엔 Colab 같은 웹 실행기가 없지만, **각 모듈 `.do`를 URL로 바로 실행**하면 데이터가
-자동으로 GitHub에서 로드된다 — 다운로드·경로설정 불필요. Stata 명령창(Command)에:
+STATA엔 Colab 같은 웹 실행기가 없으니, 두 방법 중 하나로 실습한다.
+
+**방법 1 — 실습폴더 받아 로컬 실행 (가장 간단 · 권장)**
+
+1. **[📦 stata-practice.zip 다운로드](https://github.com/amnotyoung/oda-ai-stats/raw/main/stata-practice.zip)** → 압축 풀기 (`.do` 6개 + `wdi_panel.csv`가 **한 폴더**에 들어 있음)
+2. Stata에서 작업폴더를 그 폴더로 변경: `File → Change working directory…`
+3. 모듈을 짧게 실행 — 데이터가 같은 폴더라 **인터넷 없이도** 동작:
+   ```stata
+   do 04_regression.do      // 또는  do 00_master.do  로 전체 일괄 실행
+   ```
+
+**방법 2 — URL로 바로 실행 (받는 파일 0개, 인터넷 필요)**
 
 ```stata
 do "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/stata/04_regression.do"
 ```
-
-- 각 `.do`는 **로컬에 wdi_panel.csv 있으면 로컬, 없으면 URL**에서 자동으로 데이터를 가져온다.
-- 코드를 **읽으며** 배우려면: GitHub에서 그 `.do`를 복사 → Stata 편집기에 붙여넣고 실행.
-- ⚠ **인터넷 필요**. 오프라인(폐쇄망)에선 아래 로컬 방식.
-- ※ 외부망에선 모듈을 **하나씩** 실행하세요. `00_master.do`(일괄)는 로컬 파일이 필요해 외부망엔 부적합.
+- 데이터는 `.do`가 자동으로 가져온다(로컬에 `wdi_panel.csv` 있으면 로컬, 없으면 URL).
+- 코드를 **읽으며** 배우려면 GitHub에서 그 `.do`를 복사 → Stata 편집기에 붙여넣고 실행.
+- ⚠ 외부망에선 모듈을 **하나씩** 실행. `00_master.do`(일괄)는 로컬 파일 방식(방법 1)에서 쓴다.
 
 ---
 
