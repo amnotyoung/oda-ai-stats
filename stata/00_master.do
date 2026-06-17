@@ -3,6 +3,8 @@
 *-------------------------------------------------------------------------------
 * 데이터: World Bank WDI 패널. 추가 패키지 없이 base STATA·v14+·오프라인.
 * ✅ Stata 19에서 실행·교차검증 완료 (회귀·ANOVA·패널이 Python과 일치). 폐쇄망 MP에서도 동일.
+* ※ 이 파일은 폐쇄망(로컬 파일 일괄 실행)용. 외부망(인터넷) 실습은 각 모듈 .do 를
+*    URL로 하나씩 실행하세요 — 예: do "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/stata/04_regression.do"
 *===============================================================================
 clear all
 set more off

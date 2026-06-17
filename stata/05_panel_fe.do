@@ -4,7 +4,12 @@
 *  → Python 대응: notebooks/03_panel_fe.ipynb (Python은 국가 더미를 다 넣어야 함)
 *===============================================================================
 version 14
-if "$csv"=="" global csv "wdi_panel.csv"
+* 데이터: 같은 폴더에 wdi_panel.csv 있으면 로컬, 없으면 GitHub URL에서 자동(외부망 실습)
+if "$csv"=="" {
+    capture confirm file "wdi_panel.csv"
+    if _rc global csv "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/data/wdi_panel.csv"
+    else   global csv "wdi_panel.csv"
+}
 import delimited "$csv", clear varnames(1)
 rename *, lower
 
