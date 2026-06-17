@@ -15,8 +15,9 @@ quietly {
     rename *, lower
     summarize gdp_pc, detail                    // 왜도 계산(조용히)
 }
-display _newline(1) as result "■ 왜 로그변환?"
-display as text "   1인당 GDP 왜도(skewness) = " as result %4.2f r(skewness) as text " — 한쪽으로 크게 쏠려 있어 로그를 취합니다."
+display _newline(1) as result "■ 왜 로그변환? — 휜 관계를 직선으로 펴기 위해"
+display as text "   소득↔기대수명은 저소득서 급증·고소득서 평평(Preston 곡선)해 '직선'이 아닙니다."
+display as text "   log(소득)으로 바꾸면 거의 직선이 되어 선형회귀에 맞습니다. (왜도=" as result %4.2f r(skewness) as text " 완화·이상치 영향↓는 덤)"
 quietly gen log_gdp = ln(gdp_pc)
 
 display _newline(1) as result "■ 회귀: 소득(log) → 기대수명  (Preston 곡선)"
