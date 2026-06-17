@@ -15,10 +15,12 @@ quietly {
     rename *, lower
     summarize gdp_pc, detail                    // 왜도 계산(조용히)
 }
-display _newline(1) "■ 1인당 GDP 왜도(skewness) = " %5.2f r(skewness) "  → 크므로 로그변환"
+display _newline(1) as result "■ 왜 로그변환?"
+display as text "   1인당 GDP 왜도(skewness) = " as result %4.2f r(skewness) as text " — 한쪽으로 크게 쏠려 있어 로그를 취합니다."
 quietly gen log_gdp = ln(gdp_pc)
 
-display _newline(1) "■ 회귀: 소득(log) → 기대수명  (Preston 곡선)"
+display _newline(1) as result "■ 회귀: 소득(log) → 기대수명  (Preston 곡선)"
+display as text "   소득이 기대수명을 얼마나 설명하는지 직선으로 추정."
 regress life_exp log_gdp
-* 해석: log_gdp 계수 양수 → 소득 높을수록 기대수명↑.  R²=설명력.
+display as text "   {bf:→ 해석:} 소득 계수 = " as result %4.2f _b[log_gdp] as text " (양수·유의), R² = " as result %4.2f e(r2) as text " → 소득↑ 기대수명↑, 설명력 높음."
 * └ 이분산이 걱정되면 강건표준오차:  regress life_exp log_gdp, vce(robust)

@@ -16,6 +16,7 @@ quietly {
     bysort economy (year): keep if _n==1        // 지역·소득은 국가 속성 → 국가당 1행
 }
 
-display _newline(1) "■ 지역 × 소득그룹 — 국가 수 교차표"
+display _newline(1) as result "■ 지역 × 소득그룹 — 국가 수 교차표"
+display as text          "   각 지역에 어느 소득그룹 나라가 몇 개 있는지(국가 단위)."
 tabulate region_name income_name
-* └ 행/열 비율이 필요하면:  tabulate region_name income_name, row
+display as text "   {bf:→ 해석:} 저소득국 다수가 사하라이남에, 고소득국은 유럽·동아태 등에 분포."
