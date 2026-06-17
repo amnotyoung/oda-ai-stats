@@ -4,12 +4,10 @@
 *  → Python 대응: notebooks/02_core_analysis.ipynb 의 crosstab
 *===============================================================================
 version 14
-* 데이터: 같은 폴더에 wdi_panel.csv 있으면 로컬, 없으면 GitHub URL에서 자동(외부망 실습)
-if "$csv"=="" {
-    capture confirm file "wdi_panel.csv"
-    if _rc global csv "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/data/wdi_panel.csv"
-    else   global csv "wdi_panel.csv"
-}
+* 데이터 자동 탐색(매 실행마다): 작업폴더에 wdi_panel.csv 있으면 로컬, 없으면 GitHub URL(외부망)
+capture confirm file "wdi_panel.csv"
+if _rc global csv "https://raw.githubusercontent.com/amnotyoung/oda-ai-stats/main/data/wdi_panel.csv"
+else   global csv "wdi_panel.csv"
 import delimited "$csv", clear varnames(1)
 rename *, lower
 
