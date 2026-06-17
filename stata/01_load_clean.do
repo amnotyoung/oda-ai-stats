@@ -38,3 +38,16 @@ quietly {
 display _newline(1) as result "■ [4] 소득그룹별 평균 기대수명"
 tabstat life_exp, by(income_name) statistics(n mean) columns(statistics)
 display as text "   {bf:→ 해석:} 소득그룹이 높을수록 평균 기대수명↑ (저소득 ~58세 → 고소득 ~78세)."
+
+* ── [5] 🖼️ 그림으로 — 분포·격차 (base STATA graph → PNG 저장) ────────────────
+display _newline(1) as result "■ [5] 그림으로 보기 — 히스토그램·박스플롯"
+display as text          "   숫자 표로 안 보이는 '쏠림(왜도)'과 '그룹 격차'를 그림으로. Graph 창에 뜨고 PNG로도 저장됩니다."
+* 분포: 로그변환한 소득(왜도 완화 → 회귀에 적합)을 히스토그램으로
+histogram log_gdp, percent ///
+    title("Distribution of log(GDP per capita)") xtitle("log(GDP per capita)")
+graph export "01_hist_loggdp.png", replace width(1200)
+* 그룹 격차: 소득그룹별 기대수명 분포(상자그림 — 가운데선=중앙값)
+graph box life_exp, over(income_name, label(angle(20))) ///
+    title("Life expectancy by income group") ytitle("Life expectancy (years)")
+graph export "01_box_life_income.png", replace width(1200)
+display as text "   {bf:→} 저장된 PNG: 01_hist_loggdp.png · 01_box_life_income.png (작업폴더)"
