@@ -55,6 +55,14 @@
       cursor: default;
     }
 
+    .nav-bar a.btn-pdf {
+      background: #2563EB; color: #fff; border-radius: 6px;
+      padding: 6px 14px; font-size: 13px; font-family: inherit; font-weight: 600;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+      transition: background 0.15s;
+    }
+    .nav-bar a.btn-pdf:hover { background: #1d4ed8; }
+
     .slide-counter {
       color: #aaa;
       font-size: 14px;
@@ -113,6 +121,7 @@
       <span class="slide-counter" id="counter">1 / 39</span>
       <button id="btn-next" title="Next (\u2192)">Next</button>
       <button class="btn-fullscreen" id="btn-fs" title="Fullscreen (F)">&#x26F6;</button>
+      <a class="btn-pdf" href="lecture-deck.pdf" download="데이터고급통계분석_강의덱.pdf" title="PDF로 저장 (39장)">&#x2193; PDF</a>
     </div>
 
     <div class="slide-viewport" id="viewport">
