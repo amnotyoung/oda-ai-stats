@@ -11,7 +11,7 @@ h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--
 p,li{line-height:1.55;color:var(--ink2);}
 b,strong{color:var(--ink);font-weight:700;}
 .k1{color:var(--accent);}
-.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14pt;flex-shrink:0;}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:13pt;flex-shrink:0;}
 .rhead .l{display:flex;align-items:center;gap:9pt;}
 .rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
 .badge{display:inline-block;padding:3.5pt 8pt;background:var(--accent);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.03em;}
@@ -23,23 +23,19 @@ b,strong{color:var(--ink);font-weight:700;}
 <body>
   <div class="rhead"><div class="l"><span class="badge">MODULE 04-A</span><h4>이원 고정효과</h4></div><p class="pg">28 / 39</p></div>
   <div class="body">
-    <h2 style="font-size:22pt;margin-bottom:4pt;">식별의 문제 — <span class="k1">진짜 효과는?</span></h2>
-    <p style="font-size:10.5pt;color:var(--muted);margin-bottom:14pt;">소득과 기대수명은 시간이 지나며 함께 오른다. 단순 회귀는 둘을 <b>혼동(confounding)</b>한다.</p>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12pt;">
-      <p style="font-size:10pt;color:var(--muted);font-weight:700;">소득→기대수명 관계에 섞여 있는 두 교란</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:13pt;">
-        <div class="card" style="padding:15pt 17pt;">
-          <div style="display:flex;align-items:center;gap:10pt;margin-bottom:8pt;"><p style="font-size:19pt;line-height:1.5;">🌍</p><h3 style="font-size:15pt;">국가 고유차</h3></div>
-          <p style="font-size:11pt;line-height:1.55;">제도 · 기후 · 문화 — 나라마다 다르고, 잘 변하지 않는 특성.</p>
-        </div>
-        <div class="card" style="padding:15pt 17pt;">
-          <div style="display:flex;align-items:center;gap:10pt;margin-bottom:8pt;"><p style="font-size:19pt;line-height:1.5;">📈</p><h3 style="font-size:15pt;">전세계 시대추세</h3></div>
-          <p style="font-size:11pt;line-height:1.55;">기술 발전 · 의료 발달 — 모든 나라가 함께 겪는 시간 효과.</p>
-        </div>
-      </div>
+    <h2 style="font-size:21pt;margin-bottom:3pt;">식별의 문제 — <span class="k1">진짜 효과는?</span></h2>
+    <p style="font-size:10pt;color:var(--muted);margin-bottom:10pt;">소득·기대수명은 시간이 지나며 함께 오른다. 단순 회귀는 둘을 <b>혼동(confounding)</b> — 소득 계수가 부풀려진다.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10pt;margin-bottom:9pt;">
+      <div class="card" style="padding:9pt 13pt;"><p style="font-size:10pt;line-height:1.5;"><b>🌍 국가 고유차</b> — 제도·기후·문화 <span style="color:var(--muted);">(시간 불변)</span></p></div>
+      <div class="card" style="padding:9pt 13pt;"><p style="font-size:10pt;line-height:1.5;"><b>📈 전세계 시대추세</b> — 기술·의료 발달 <span style="color:var(--muted);">(모든 나라 공통)</span></p></div>
     </div>
-    <div style="margin-top:13pt;background:var(--navy);border-radius:8pt;padding:12pt 16pt;">
-      <p style="font-size:11.5pt;color:#EAF1FB;font-weight:600;line-height:1.45;">해결 — <b style="color:#7DB0FF;">고정효과(Fixed Effects)</b>로 이 두 교란을 걷어내고 <b style="color:#fff;">'소득의 순효과'</b>에 다가간다.</p>
+    <div style="background:#FFF7EB;border:1px solid #F4C36B;border-radius:8pt;padding:10pt 14pt;margin-bottom:9pt;">
+      <p style="font-size:10pt;color:#7A4B12;font-weight:600;line-height:1.5;"><b style="color:#92400E;">❌ p값으로는 못 거른다</b> — 계수가 유의해도(p&lt;0.05) 교란이 사라진 게 아니다. p값은 <b>'우연 여부(정밀도)'</b>만 볼 뿐 <b>편향(교란이 섞였나)</b>은 못 본다. 실제로 pooled <b>4.59</b>도 p≈0(매우 유의)였지만 교란으로 부풀려진 값이었다.</p>
+    </div>
+    <div style="flex:1;min-height:0;background:var(--navy);border-radius:8pt;padding:11pt 16pt;display:flex;flex-direction:column;justify-content:center;gap:6pt;">
+      <p style="font-size:10.5pt;color:#7DB0FF;font-weight:700;">🔍 고정효과가 남아 있나? — 이렇게 판단한다</p>
+      <p style="font-size:9.8pt;color:#EAF1FB;line-height:1.5;"><b style="color:#fff;">① 모형 비교</b> — 통제(FE)를 추가했을 때 계수가 <b style="color:#fff;">크게 바뀌면</b> 빠졌던 교란이 있었다는 신호 <span style="color:#9DB4D4;">(다음 장 4.59→3.54→1.26)</span>.</p>
+      <p style="font-size:9.8pt;color:#EAF1FB;line-height:1.5;"><b style="color:#fff;">② 검정</b> — <b style="color:#fff;">'국가효과 = 0' F검정</b>(Stata <span style="font-family:'SF Mono',Menlo,monospace;color:#9DBEEA;">xtreg, fe</span>가 자동 출력)·<b style="color:#fff;">Hausman 검정</b>(FE vs 확률효과)으로 고정효과 필요 여부를 통계적으로 확인.</p>
     </div>
   </div>
 </body>
