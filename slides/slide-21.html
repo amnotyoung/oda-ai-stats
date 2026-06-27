@@ -18,17 +18,18 @@ b,strong{color:var(--ink);font-weight:700;}
 .pg{font-size:9pt;color:var(--muted);font-weight:600;}
 .body{flex:1;min-height:0;display:flex;flex-direction:column;}
 .tag{display:inline-block;padding:3pt 9pt;border-radius:5pt;font-size:9pt;font-weight:700;letter-spacing:0.02em;}
-.rq{background:var(--soft);border-radius:7pt;padding:8pt 13pt;margin-bottom:11pt;}
+.rq{background:var(--soft);border-radius:7pt;padding:8pt 13pt;margin-bottom:9pt;}
 pre.code{background:var(--code-bg);border-radius:8pt;padding:12pt 14pt;color:var(--code-ink);font-family:'SF Mono','JetBrains Mono',Menlo,Consolas,'Pretendard',monospace;font-size:8.8pt;line-height:1.62;overflow:hidden;white-space:pre-wrap;word-break:break-word;}
 .code .c{color:var(--com);}.code .k{color:var(--kw);}.code .s{color:var(--str);}.code .n{color:var(--num);}.code .f{color:var(--fn);}.code .o{color:var(--op);}
 </style>
 </head>
 <body>
-  <div class="rhead"><div class="l"><span class="badge">MODULE 03</span><h4>① 교차표</h4></div><p class="pg">21 / 39</p></div>
+  <div class="rhead"><div class="l"><span class="badge">MODULE 03</span><h4>① 기술통계</h4></div><p class="pg">21 / 39</p></div>
   <div class="body">
-    <h2 style="font-size:21pt;margin-bottom:9pt;">① 교차표 — 지역 × 소득그룹</h2>
-    <div class="rq"><p style="font-size:10.5pt;color:var(--accent2);font-weight:600;">🔎 연구질문 — 각 지역에 어느 소득그룹 나라가 몇 개 있는가? (국가 단위)</p></div>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14pt;">
+    <h2 style="font-size:20pt;margin-bottom:3pt;">① 기술통계 — <span class="k1">교차표</span></h2>
+    <p style="font-size:9.5pt;color:var(--muted);margin-bottom:9pt;">데이터를 <b>요약·묘사</b>하는 첫걸음(평균·분포·빈도…). 범주형 두 변수의 분포는 <b>교차표</b>로 본다.</p>
+    <div class="rq"><p style="font-size:10.5pt;color:var(--accent2);font-weight:600;">🔎 살펴보기 — 각 지역에 어느 소득그룹 나라가 몇 개 있는가? (국가 단위)</p></div>
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:14pt;">
       <div style="display:flex;flex-direction:column;">
         <div style="margin-bottom:8pt;"><span class="tag" style="background:var(--accent);color:#fff;">Python</span></div>
         <pre class="code">countries = df.<span class="f">drop_duplicates</span>(<span class="s">"economy"</span>)
@@ -43,8 +44,11 @@ pd.<span class="f">crosstab</span>(countries[<span class="s">"region_name"</span
 <span class="k">tabulate</span> region_name income_name</pre>
       </div>
     </div>
-    <div style="margin-top:12pt;background:var(--navy);border-radius:8pt;padding:11pt 16pt;">
-      <p style="font-size:10.5pt;color:#EAF1FB;font-weight:500;line-height:1.45;"><b style="color:#7DB0FF;">→ 해석</b> — 저소득국 다수가 <b style="color:#fff;">사하라이남</b>에, 고소득국은 유럽·동아태 등에 분포. (지역·소득은 국가 속성이라 국가당 1행으로 집계)</p>
+    <div style="margin-top:9pt;background:var(--navy);border-radius:8pt;padding:10pt 16pt;">
+      <p style="font-size:10pt;color:#EAF1FB;font-weight:500;line-height:1.45;"><b style="color:#7DB0FF;">→ 해석</b> — 저소득국 다수가 <b style="color:#fff;">사하라이남</b>에, 고소득국은 유럽·동아태 등에 분포.</p>
+    </div>
+    <div style="margin-top:8pt;background:#FFF7EB;border:1px solid #F4C36B;border-radius:8pt;padding:9pt 14pt;">
+      <p style="font-size:10pt;color:#7A4B12;font-weight:600;line-height:1.45;">⚠️ 여기까지는 <b style="color:#92400E;">탐색적 데이터 분석(EDA)</b> — '분포를 <b>봤다</b>'이지 '분석을 <b>끝냈다</b>'가 아니다. 검정·인과는 <b style="color:#92400E;">② t검정 · ③ 회귀</b>부터.</p>
     </div>
   </div>
 </body>
