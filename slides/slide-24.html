@@ -29,15 +29,15 @@ circle.dot{transition:cx .6s cubic-bezier(.4,0,.2,1);}
   <div class="body">
     <h2 style="font-size:21pt;margin-bottom:3pt;">③ 회귀 설계 — <span class="k1">왜 로그변환?</span></h2>
     <p style="font-size:10pt;color:var(--muted);margin-bottom:7pt;">선형회귀는 <b>'직선' 관계</b>를 가정한다. 휘어 있는 관계를 펴려고 로그를 씌운다.</p>
-    <div style="flex:1;display:grid;grid-template-columns:1.5fr 1fr;gap:15pt;">
-      <div class="card" style="padding:8pt 11pt 6pt;display:flex;flex-direction:column;">
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1.5fr 1fr;gap:15pt;">
+      <div class="card" style="padding:8pt 11pt 6pt;display:flex;flex-direction:column;min-height:0;">
         <div style="display:flex;justify-content:center;margin-bottom:5pt;">
           <div id="tg">
             <button id="b0" class="on" onclick="setMode(0)">소득 (원본)</button>
             <button id="b1" onclick="setMode(1)">log(소득)</button>
           </div>
         </div>
-        <svg id="sc" viewBox="0 0 330 192" style="width:100%;flex:1;">
+        <svg id="sc" viewBox="0 0 330 192" style="width:100%;flex:1;min-height:0;">
           <line x1="38" y1="166" x2="322" y2="166" stroke="#C9D4E2" stroke-width="1.3"/>
           <line x1="38" y1="12" x2="38" y2="166" stroke="#C9D4E2" stroke-width="1.3"/>
           <text id="xlab" x="180" y="184" text-anchor="middle" font-size="8.5" fill="#6B7C90" font-family="Pretendard">소득 (1인당 GDP, US$) →</text>
@@ -62,6 +62,7 @@ circle.dot{transition:cx .6s cubic-bezier(.4,0,.2,1);}
       <p style="font-size:10.5pt;color:#EAF1FB;font-weight:600;line-height:1.45;">AI는 이걸 <b style="color:#fff;">자동으로 안 할 수 있다.</b> "관계가 휘었으니 로그를 씌우자"는 데이터를 아는 사람의 판단 — <b style="color:#7DB0FF;">설계는 사람 몫.</b></p>
     </div>
   </div>
+  <a href="https://seeing-theory.brown.edu/probability-distributions/index.html" target="_blank" style="flex-shrink:0;margin-top:8pt;display:flex;align-items:center;gap:8pt;background:var(--surface2);border:1px solid var(--line);border-radius:7pt;padding:6pt 11pt;text-decoration:none;"><span style="display:inline-flex;align-items:center;gap:4pt;background:var(--accent);color:#fff;font-size:8pt;font-weight:700;padding:2.5pt 7pt;border-radius:4pt;white-space:nowrap;flex-shrink:0;">🔗 라이브 데모</span><span style="font-family:'SF Mono',Menlo,Consolas,monospace;font-size:8.5pt;color:var(--accent2);font-weight:700;white-space:nowrap;flex-shrink:0;">seeing-theory.brown.edu/probability-distributions</span><span style="font-size:8.5pt;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">— 분포 모양과 왜도(치우침)가 손으로 바뀝니다</span></a>
   <script src="./assets/wdi2021.js"></script>
   <script>
   (function(){
