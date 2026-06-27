@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--bonus:#0E7490;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--bonus);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.05em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;}
+table.res{width:100%;border-collapse:collapse;font-family:'SF Mono',Menlo,Consolas,'Pretendard',monospace;}
+table.res th,table.res td{border:1px solid var(--border);padding:7pt 9pt;text-align:center;font-size:10pt;}
+table.res th{background:var(--navy);color:#EAF1FB;font-weight:700;font-size:9pt;}
+table.res td:first-child{text-align:left;font-weight:700;color:var(--ink);background:var(--surface2);}
+table.res .star{color:var(--bad);font-weight:800;}
+.lg{display:flex;align-items:flex-start;gap:8pt;font-size:9.5pt;line-height:1.45;}
+.lg .b{flex-shrink:0;font-family:'SF Mono',Menlo,monospace;font-weight:800;color:var(--accent2);min-width:54pt;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">BONUS</span><h4>영향평가 보고서 독해</h4></div><p class="pg">42 / 43</p></div>
+  <div class="body">
+    <h2 style="font-size:20pt;margin-bottom:3pt;">그 표, <span class="k1">한 줄씩</span> 읽어보자</h2>
+    <p style="font-size:9.5pt;color:var(--muted);margin-bottom:11pt;">〈표 4-1c〉 베트남 적응조치의 효과 (내생적교체회귀 ESR) — 겁먹지 말고 오늘 용어로.</p>
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1.05fr 1fr;gap:16pt;">
+      <div style="display:flex;flex-direction:column;justify-content:center;">
+        <table class="res">
+          <tr><th style="background:none;border:none;"></th><th>ATT — 1인당 소득(로그)</th></tr>
+          <tr><td>소득 다각화</td><td>0.529<span class="star">***</span> (0.051)</td></tr>
+          <tr><td>기후정보 활용</td><td>0.360<span class="star">***</span> (0.041)</td></tr>
+          <tr><td>보험 구입</td><td style="color:var(--bad);">−2.34<span class="star">***</span> (0.072)</td></tr>
+        </table>
+        <p style="font-size:8.7pt;color:var(--muted);margin-top:6pt;line-height:1.4;font-family:'SF Mono',Menlo,monospace;">Heteroscedasticity robust SE in parentheses. <span class="star" style="color:var(--bad);">***</span> p&lt;0.01</p>
+      </div>
+      <div class="card" style="padding:11pt 14pt;display:flex;flex-direction:column;justify-content:center;gap:8pt;">
+        <div class="lg"><span class="b">0.529</span><span><b>계수</b> — 효과의 크기·방향. 양수면 소득↑ <span style="color:var(--muted);">(슬 25)</span></span></div>
+        <div class="lg"><span class="b">(0.051)</span><span><b>표준오차</b> — 추정의 정밀도(흔들림)</span></div>
+        <div class="lg"><span class="b" style="color:var(--bad);">***</span><span><b>p&lt;0.01</b>, 매우 유의 — 별 많을수록 우연 아님 <span style="color:var(--muted);">(슬 23)</span></span></div>
+        <div class="lg"><span class="b">ATT</span><span><b>평균처치효과</b> — "적응조치 <b>때문에</b> 생긴 변화"(반사실 대비) <span style="color:var(--muted);">(슬 28·33)</span></span></div>
+        <div class="lg"><span class="b" style="color:var(--bad);">−2.34</span><span><b>음수!</b> 보험은 오히려 소득↓ — <b>부호</b>를 읽어라</span></div>
+      </div>
+    </div>
+    <div style="margin-top:11pt;background:var(--navy);border-radius:8pt;padding:10pt 16pt;text-align:center;">
+      <p style="font-size:11pt;color:#EAF1FB;font-weight:600;">계수·표준오차·별표·처치효과 — <b style="color:#7DB0FF;">전부 오늘 배운 것.</b> 이제 영향평가 보고서가 읽힌다.</p>
+    </div>
+  </div>
+</body>
+</html>

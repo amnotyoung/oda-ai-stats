@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--bonus:#0E7490;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--bonus);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.05em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+table.map{width:100%;border-collapse:collapse;}
+table.map td{border:1px solid var(--border);padding:8pt 13pt;vertical-align:middle;}
+table.map tr td:first-child{background:var(--navy);color:#EAF1FB;font-weight:700;font-size:10.5pt;font-family:'SF Mono',Menlo,Consolas,'Pretendard',monospace;width:42%;}
+table.map tr td:last-child{background:var(--surface);font-size:10.5pt;color:var(--ink2);}
+table.map .s{color:var(--accent2);font-weight:700;}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">BONUS</span><h4>영향평가 보고서 독해</h4></div><p class="pg">41 / 43</p></div>
+  <div class="body">
+    <h2 style="font-size:21pt;margin-bottom:3pt;">오늘 배운 걸로 — <span class="k1">이 보고서가 읽힌다</span></h2>
+    <p style="font-size:9.7pt;color:var(--muted);margin-bottom:10pt;">KOICA 〈메콩강 유역 농가 기후변화 영향·적응조치 효과 융복합 실증연구〉(2025, 서울대). 어려워 보여도 — 쓰인 방법은 <b>전부 오늘 배운 것</b>이다.</p>
+    <table class="map">
+      <tr><td>다중회귀분석 (OLS)</td><td>회귀 — 계수·R² 읽기 <span class="s">→ 슬라이드 07·25</span></td></tr>
+      <tr><td>패널 고정효과 (Panel FE)</td><td>이원 고정효과, 4.59→3.54→1.26 <span class="s">→ 슬라이드 28~31</span></td></tr>
+      <tr><td>주성분분석 (PCA)</td><td>여러 지표→적응조치 '지수' 만들기 <span class="s">→ 슬라이드 33</span></td></tr>
+      <tr><td>내생성 통제 (ESR)</td><td>"상관 ≠ 인과", p값으론 못 거르는 편향 <span class="s">→ 슬라이드 28·33</span></td></tr>
+      <tr><td>패널 자료 · 집단 비교</td><td>패널 데이터 · t검정/ANOVA <span class="s">→ 슬라이드 14·22~23</span></td></tr>
+    </table>
+    <div style="margin-top:auto;padding-top:10pt;"><p style="font-size:11pt;color:var(--ink);font-weight:600;text-align:center;">용어만 길지, <b class="k1">전부 아는 개념</b>이다. 이제 한 줄씩 읽어보자. →</p></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#FFFFFF;--surface:#F4F7FB;--surface2:#EAF1F9;--ink:#1E2A3A;--ink2:#34465C;--muted:#6B7C90;--accent:#2563EB;--accent2:#1D4ED8;--soft:#DBEAFE;--border:#E2E8F0;--line:#D9E2EE;--navy:#16243A;--bonus:#0E7490;--ok:#15A34A;--bad:#DC2626;}
+body{width:720pt;height:405pt;overflow:hidden;position:relative;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding:24pt 32pt;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{letter-spacing:-0.02em;line-height:1.18;font-weight:700;color:var(--ink);}
+p,li{line-height:1.55;color:var(--ink2);}
+b,strong{color:var(--ink);font-weight:700;}
+.k1{color:var(--accent);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:11pt;flex-shrink:0;}
+.rhead .l{display:flex;align-items:center;gap:9pt;}
+.rhead h4{font-size:13pt;font-weight:700;color:var(--ink);}
+.badge{display:inline-block;padding:3.5pt 8pt;background:var(--bonus);color:#fff;border-radius:5pt;font-size:8.5pt;font-weight:700;letter-spacing:0.05em;}
+.pg{font-size:9pt;color:var(--muted);font-weight:600;}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;}
+.card{border-radius:9pt;padding:11pt 14pt;border:1px solid var(--border);}
+.tag{display:inline-block;padding:2.5pt 8pt;border-radius:5pt;font-size:8.5pt;font-weight:800;letter-spacing:0.02em;margin-bottom:7pt;}
+.row{font-size:9.3pt;line-height:1.5;color:var(--ink2);margin-bottom:2.5pt;}
+.row b{color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="rhead"><div class="l"><span class="badge">BONUS</span><h4>모니터링 vs 영향평가</h4></div><p class="pg">43 / 43</p></div>
+  <div class="body">
+    <h2 style="font-size:20pt;margin-bottom:3pt;">모니터링인가 영향평가인가 — <span class="k1">수준을 구분·관리</span></h2>
+    <p style="font-size:9.5pt;color:var(--muted);margin-bottom:10pt;">둘 다 정당한 보고서지만 <b>목적이 다르다.</b> 영향평가가 필요한 과업에 모니터링 수준 결과물이 오기도 한다 — 악의보다 <b>몰라서</b>인 경우가 많다. 핵심은 비난이 아니라, <b>우리가 수준을 구분해 발주·검수</b>하는 것.</p>
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:13pt;">
+      <div class="card" style="background:var(--surface);display:flex;flex-direction:column;">
+        <span class="tag" style="background:#E2E8F0;color:#475569;">모니터링 · 예: UN MDG 2015</span>
+        <p class="row">목적: "무엇이 <b>변했나?</b>" (진척 추적)</p>
+        <p class="row">도구: 표·그래프·% 변화 <b>(기술통계)</b></p>
+        <p class="row" style="color:var(--muted);">예) 극빈율 47%→14%, 아동사망 90→43</p>
+        <p class="row">인과는 <b>다루지 않음</b> (설계상 — 대조군·통제 없음)</p>
+        <p class="row" style="margin-top:auto;color:var(--accent2);font-weight:700;">= 슬라이드 21 (기술통계·EDA)</p>
+      </div>
+      <div class="card" style="background:#EEF4FF;border-color:#BFD4F5;display:flex;flex-direction:column;">
+        <span class="tag" style="background:var(--accent);color:#fff;">영향평가 · 예: KOICA 메콩</span>
+        <p class="row">목적: "그 변화가 우리 사업 <b class="k1">때문인가?</b>" (귀속)</p>
+        <p class="row">도구: 회귀·고정효과·ESR·<b>처치효과(ATT)</b></p>
+        <p class="row" style="color:var(--muted);">교란 통제 + 반사실(대조군) 비교</p>
+        <p class="row">인과를 <b>추정함</b> (가정 하에)</p>
+        <p class="row" style="margin-top:auto;color:var(--accent2);font-weight:700;">= 슬라이드 28~31·33</p>
+      </div>
+    </div>
+    <div style="margin-top:11pt;background:var(--navy);border-radius:8pt;padding:9pt 15pt;">
+      <p style="font-size:9.8pt;color:#EAF1FB;font-weight:600;line-height:1.5;"><b style="color:#7DB0FF;">🔎 발주·검수 체크</b> — 영향평가가 필요한 과업이라면 결과물에 <b style="color:#fff;">① 회귀계수·p값·처치효과(ATT) ② 대조군·반사실 ③ 교란 통제(고정효과)</b>가 있나? 없이 지표 추세만이면 그건 <b style="color:#fff;">모니터링</b>이다 — 과업 범위를 명확히 하고 보완을 요청하면 된다.</p>
+    </div>
+  </div>
+</body>
+</html>

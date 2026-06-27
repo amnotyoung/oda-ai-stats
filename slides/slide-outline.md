@@ -5,7 +5,7 @@
 - **Target Audience**: 사내 동료 (Python·STATA 모두 입문, 통계 기초 보유), 국제개발협력 실무자
 - **Tone/Mood**: 기관/정책 진중 톤, 신뢰감 (Corporate Blue)
 - **Style**: corporate-blue
-- **Slide Count**: 40 slides (+slide-40 에필로그 "생각해보기") (수정 라운드 1 반영 — 신규 slide-33 "미다룬 기법" 삽입, 이후 34~39 시프트)
+- **Slide Count**: 43 slides (+보너스 모듈 41~43 영향평가 보고서 독해) (수정 라운드 1 반영 — 신규 slide-33 "미다룬 기법" 삽입, 이후 34~39 시프트)
 - **Aspect Ratio**: 16:9 (720pt × 405pt)
 - **Source**: 강의안.md · 01_도입_python_vs_stata.md · 02_데이터_소개_WDI.md · github.com/amnotyoung/oda-ai-stats
 - **밀도 정책**: slides-grab 디자인 토큰은 따르되 "one idea/텍스트 최소화"는 강의교재용으로 완화 — 코드 대조·표·수치를 충분히. dense 슬라이드와 statement/divider를 교차.
