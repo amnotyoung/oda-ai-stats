@@ -19,36 +19,37 @@ b,strong{color:var(--ink);font-weight:700;}
 .body{flex:1;min-height:0;display:flex;flex-direction:column;}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:9pt;padding:13pt 15pt;display:flex;flex-direction:column;}
 .tag{display:inline-block;padding:2.5pt 7pt;border-radius:4pt;font-size:8pt;font-weight:700;letter-spacing:0.02em;}
+.demo{margin-top:auto;align-self:flex-start;font-size:8.5pt;font-weight:700;color:var(--accent2);text-decoration:none;padding-top:7pt;}
 </style>
 </head>
 <body>
   <div class="rhead"><div class="l"><span class="badge">MODULE 04</span><h4>더 알아두기</h4></div><p class="pg">33 / 39</p></div>
   <div class="body">
     <h2 style="font-size:21pt;margin-bottom:3pt;">오늘 못 다룬, <span class="k1">알아두면 좋은</span> 기법</h2>
-    <p style="font-size:10pt;color:var(--muted);margin-bottom:12pt;">AI에게 이름만 말하면 다 불러온다 — '무엇을 풀지' 고르는 게 핵심.</p>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12pt;">
+    <p style="font-size:10pt;color:var(--muted);margin-bottom:12pt;"><b style="color:var(--accent2);">위 둘은 계량 분석</b>, <b style="color:#6D28D9;">아래 둘은 머신러닝</b> — 이름만 말하면 AI가 불러온다. '무엇을 풀지'가 핵심.</p>
+    <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12pt;">
       <div class="card">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">로지스틱 회귀</h3><span class="tag" style="background:var(--soft);color:var(--accent2);">분류</span></div>
-        <p style="font-size:10pt;line-height:1.5;"><b>예/아니오</b> 같은 이진 결과의 확률을 예측. <span style="color:var(--muted);">예: 빈곤 여부, 사업 성공/실패, 채무불이행.</span></p>
-        <a href="https://mlu-explain.github.io/logistic-regression/" target="_blank" style="margin-top:auto;align-self:flex-start;font-size:8.5pt;font-weight:700;color:var(--accent2);text-decoration:none;padding-top:7pt;">↗ 라이브 데모 · MLU</a>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">인과추론</h3><span class="tag" style="background:var(--soft);color:var(--accent2);">계량 · 임팩트평가</span></div>
+        <p style="font-size:10pt;line-height:1.5;">상관을 넘어 <b>진짜 효과</b>를 식별. 이중차분(DiD)·도구변수(IV)·회귀불연속(RDD) — <span style="color:var(--muted);">무작위배정 없이 정책효과를 추정, KOICA M&amp;E 직결.</span></p>
       </div>
       <div class="card">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">K-최근접이웃 (K-NN)</h3><span class="tag" style="background:var(--soft);color:var(--accent2);">분류·예측</span></div>
-        <p style="font-size:10pt;line-height:1.5;">가장 <b>가까운 이웃 K개</b>를 보고 판정. 직관적·비모수 — 비슷한 나라들로 결측 추정에도.</p>
-        <a href="https://ml-playground.com/" target="_blank" style="margin-top:auto;align-self:flex-start;font-size:8.5pt;font-weight:700;color:var(--accent2);text-decoration:none;padding-top:7pt;">↗ 라이브 데모 · ML Playground</a>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">주성분분석 (PCA)</h3><span class="tag" style="background:var(--soft);color:var(--accent2);">계량 · 차원축소</span></div>
+        <p style="font-size:10pt;line-height:1.5;">여러 상관된 지표를 <b>핵심 축 몇 개</b>로 압축. <span style="color:var(--muted);">개발 복합지수(자산지수 등) 설계에.</span></p>
+        <a href="https://setosa.io/ev/principal-component-analysis/" target="_blank" class="demo">↗ 라이브 데모 · setosa</a>
       </div>
       <div class="card">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">서포트벡터머신 (SVM)</h3><span class="tag" style="background:var(--soft);color:var(--accent2);">분류</span></div>
-        <p style="font-size:10pt;line-height:1.5;">두 그룹을 <b>최대 여백</b>으로 가르는 경계를 찾는다. 표본이 적고 고차원일 때 강함.</p>
-        <a href="https://ml-playground.com/" target="_blank" style="margin-top:auto;align-self:flex-start;font-size:8.5pt;font-weight:700;color:var(--accent2);text-decoration:none;padding-top:7pt;">↗ 라이브 데모 · ML Playground</a>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">신경망 (딥러닝)</h3><span class="tag" style="background:#E7E0F6;color:#6D28D9;">ML · 딥러닝</span></div>
+        <p style="font-size:10pt;line-height:1.5;">여러 층의 뉴런으로 <b>복잡한 비선형 패턴</b>을 학습. <span style="color:var(--muted);">이미지·텍스트 등 비정형 데이터에 강함.</span></p>
+        <a href="https://playground.tensorflow.org/" target="_blank" class="demo">↗ 라이브 데모 · TF Playground</a>
       </div>
       <div class="card">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">군집분석 (K-means)</h3><span class="tag" style="background:#E7E0F6;color:#6D28D9;">비지도</span></div>
-        <p style="font-size:10pt;line-height:1.5;">정답 라벨 <b>없이</b> 비슷한 것끼리 묶는다. <span style="color:var(--muted);">예: 개발 패턴이 닮은 국가 유형화.</span></p>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6pt;"><h3 style="font-size:14pt;">그래디언트 부스팅</h3><span class="tag" style="background:#E7E0F6;color:#6D28D9;">ML · 앙상블</span></div>
+        <p style="font-size:10pt;line-height:1.5;">약한 트리를 <b>순차적으로</b> 더해 오차를 줄인다. <span style="color:var(--muted);">RF의 사촌, 정형데이터 예측 최강(XGBoost).</span></p>
+        <a href="https://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html" target="_blank" class="demo">↗ 라이브 데모 · Rogozhnikov</a>
       </div>
     </div>
     <div style="margin-top:12pt;background:var(--navy);border-radius:8pt;padding:11pt 16pt;">
-      <p style="font-size:11pt;color:#EAF1FB;font-weight:600;line-height:1.45;">분류·예측·군집… <b style="color:#fff;">도구는 많다.</b> 호출은 AI가, <b style="color:#7DB0FF;">'무엇을 왜 풀지'와 결과 검증은 사람이.</b></p>
+      <p style="font-size:11pt;color:#EAF1FB;font-weight:600;line-height:1.45;">인과추론·차원축소·딥러닝… <b style="color:#fff;">도구는 많다.</b> 호출은 AI가, <b style="color:#7DB0FF;">'무엇을 왜 풀지'와 결과 검증은 사람이.</b></p>
     </div>
   </div>
 </body>
