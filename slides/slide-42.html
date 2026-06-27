@@ -18,10 +18,10 @@ b,strong{color:var(--ink);font-weight:700;}
 .pg{font-size:9pt;color:var(--muted);font-weight:600;}
 .body{flex:1;min-height:0;display:flex;flex-direction:column;}
 table.map{width:100%;border-collapse:collapse;}
-table.map td{border:1px solid var(--border);padding:6.5pt 12pt;vertical-align:middle;}
-table.map tr td:first-child{background:var(--navy);color:#EAF1FB;font-weight:700;font-size:9.8pt;font-family:'SF Mono',Menlo,Consolas,'Pretendard',monospace;width:46%;}
-table.map tr td:last-child{background:var(--surface);font-size:9.8pt;color:var(--ink2);}
-table.map .s{color:var(--accent2);font-weight:700;}
+table.map td,table.map th{border:1px solid var(--border);padding:6.5pt 13pt;vertical-align:middle;text-align:left;}
+table.map thead th{background:var(--surface2);color:var(--muted);font-size:8.5pt;font-weight:700;}
+table.map tbody tr td:first-child{background:var(--navy);color:#EAF1FB;font-weight:700;font-size:9.8pt;font-family:'SF Mono',Menlo,Consolas,'Pretendard',monospace;width:46%;}
+table.map tbody tr td:last-child{background:var(--surface);font-size:10pt;color:var(--ink);font-weight:600;}
 </style>
 </head>
 <body>
@@ -31,15 +31,18 @@ table.map .s{color:var(--accent2);font-weight:700;}
     <p style="font-size:9.5pt;color:var(--muted);margin-bottom:11pt;">어려워 보여도 — 이 보고서에 쓰인 방법은 <b>전부 오늘 배운 것</b>이다.</p>
     <div style="flex:1;min-height:0;display:grid;grid-template-columns:auto 1fr;gap:18pt;align-items:center;">
       <div style="display:flex;flex-direction:column;align-items:center;gap:5pt;">
-        <img src="./assets/koica-cover.png" style="height:215pt;width:auto;border:1px solid var(--border);border-radius:5pt;box-shadow:0 3pt 10pt rgba(22,36,58,0.13);">
+        <img src="./assets/koica-cover.png" style="height:212pt;width:auto;border:1px solid var(--border);border-radius:5pt;box-shadow:0 3pt 10pt rgba(22,36,58,0.13);">
         <p style="font-size:8pt;color:var(--muted);font-weight:600;text-align:center;line-height:1.35;">KOICA 메콩강 농가 기후변화<br>영향평가 (2025, 서울대)</p>
       </div>
       <table class="map">
-        <tr><td>다중회귀분석 (OLS)</td><td>회귀 — 계수·R² <span class="s">→ 슬 07·25</span></td></tr>
-        <tr><td>패널 고정효과 (Panel FE)</td><td>이원 FE, 4.59→3.54→1.26 <span class="s">→ 슬 28~31</span></td></tr>
-        <tr><td>주성분분석 (PCA)</td><td>여러 지표→적응조치 '지수' <span class="s">→ 슬 33</span></td></tr>
-        <tr><td>내생성 통제 (ESR)</td><td>"상관 ≠ 인과", 편향 잡기 <span class="s">→ 슬 28·33</span></td></tr>
-        <tr><td>패널 자료 · 집단 비교</td><td>패널 데이터 · t검정/ANOVA <span class="s">→ 슬 14·22</span></td></tr>
+        <thead><tr><th>보고서가 쓴 방법</th><th>= 오늘 배운 것</th></tr></thead>
+        <tbody>
+          <tr><td>다중회귀분석 (OLS)</td><td>계수·R²로 읽은 회귀</td></tr>
+          <tr><td>패널 고정효과 (Panel FE)</td><td>4.59 → 3.54 → 1.26 계수 사다리</td></tr>
+          <tr><td>주성분분석 (PCA)</td><td>여러 지표를 한 '지수'로</td></tr>
+          <tr><td>내생성 통제 (ESR)</td><td>'상관 ≠ 인과' · 편향 잡기</td></tr>
+          <tr><td>패널 자료 · 집단 비교</td><td>패널 데이터 · t검정/ANOVA</td></tr>
+        </tbody>
       </table>
     </div>
     <div style="margin-top:9pt;"><p style="font-size:10.5pt;color:var(--ink);font-weight:600;text-align:center;">용어만 길지, <b class="k1">전부 아는 개념</b>이다. 이제 실제 표를 읽어보자. →</p></div>
