@@ -33,9 +33,10 @@ b,strong{color:var(--ink);font-weight:700;}
         <p style="font-size:11pt;line-height:1.55;">두 집단의 기대수명 <b>평균 차이가 유의</b>하다. <span style="color:var(--ok);font-weight:700;">p &lt; 0.05</span></p>
       </div>
       <div class="card" style="padding:15pt 17pt;display:flex;flex-direction:column;justify-content:center;background:var(--navy);border-color:#2B3B53;">
-        <span class="tag" style="background:#2C4366;color:#fff;align-self:flex-start;margin-bottom:9pt;">ANOVA · 4집단</span>
-        <p style="font-size:34pt;font-weight:800;color:#7DB0FF;line-height:1.25;letter-spacing:-0.02em;">F = 1877</p>
-        <p style="font-size:11pt;color:#C7D6EC;margin-top:6pt;line-height:1.5;">소득그룹 4개 사이 기대수명 차이 <b style="color:#fff;">매우 유의</b>.</p>
+        <span class="tag" style="background:#2C4366;color:#fff;align-self:flex-start;margin-bottom:8pt;">ANOVA · 4집단</span>
+        <p style="font-size:31pt;font-weight:800;color:#7DB0FF;line-height:1.2;letter-spacing:-0.02em;">F = 1877</p>
+        <p style="font-family:'SF Mono',Menlo,Consolas,monospace;font-size:9pt;color:#9DBEEA;margin-top:5pt;line-height:1.45;">F = 집단간 분산 ÷ 집단내 분산</p>
+        <p style="font-size:9.5pt;color:#C7D6EC;margin-top:5pt;line-height:1.45;">집단 간 차이가 집단 내 노이즈보다 <b style="color:#fff;">클수록 F↑</b> → 차이가 <b style="color:#fff;">매우 유의</b>.</p>
       </div>
     </div>
     <div style="margin-top:13pt;background:var(--surface2);border:1px solid var(--border);border-radius:8pt;padding:11pt 16pt;display:flex;align-items:center;gap:14pt;">
@@ -43,6 +44,9 @@ b,strong{color:var(--ink);font-weight:700;}
       <p style="font-size:12.5pt;font-weight:800;color:var(--ink);">저소득 <span style="color:var(--muted);">~58세</span> &nbsp;⟶&nbsp; 고소득 <span class="k1">~78세</span></p>
     </div>
   </div>
-  <a href="https://rpsychologist.com/d3/one-way-anova/" target="_blank" style="flex-shrink:0;margin-top:8pt;display:flex;align-items:center;gap:8pt;background:var(--surface2);border:1px solid var(--line);border-radius:7pt;padding:6pt 11pt;text-decoration:none;"><span style="display:inline-flex;align-items:center;gap:4pt;background:var(--accent);color:#fff;font-size:8pt;font-weight:700;padding:2.5pt 7pt;border-radius:4pt;white-space:nowrap;flex-shrink:0;">🔗 라이브 데모</span><span style="font-family:'SF Mono',Menlo,Consolas,monospace;font-size:8.5pt;color:var(--accent2);font-weight:700;white-space:nowrap;flex-shrink:0;">rpsychologist.com/d3/one-way-anova</span><span style="font-size:8.5pt;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">— 집단간·집단내 제곱합 분해로 F가 어디서 나오는지</span></a>
+  <div style="flex-shrink:0;margin-top:8pt;display:flex;gap:8pt;">
+    <a href="https://rpsychologist.com/d3/nhst/" target="_blank" style="flex:1;min-width:0;display:flex;align-items:center;gap:7pt;background:var(--surface2);border:1px solid var(--line);border-radius:7pt;padding:6pt 10pt;text-decoration:none;"><span style="background:var(--accent);color:#fff;font-size:8pt;font-weight:700;padding:2.5pt 6pt;border-radius:4pt;white-space:nowrap;flex-shrink:0;">🔗 데모</span><span style="font-family:'SF Mono',Menlo,Consolas,monospace;font-size:8pt;color:var(--accent2);font-weight:700;white-space:nowrap;flex-shrink:0;">rpsychologist.com/d3/nhst</span><span style="font-size:8pt;color:var(--muted);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">— p값·유의성</span></a>
+    <a href="https://rpsychologist.com/d3/one-way-anova/" target="_blank" style="flex:1;min-width:0;display:flex;align-items:center;gap:7pt;background:var(--surface2);border:1px solid var(--line);border-radius:7pt;padding:6pt 10pt;text-decoration:none;"><span style="background:var(--accent);color:#fff;font-size:8pt;font-weight:700;padding:2.5pt 6pt;border-radius:4pt;white-space:nowrap;flex-shrink:0;">🔗 데모</span><span style="font-family:'SF Mono',Menlo,Consolas,monospace;font-size:8pt;color:var(--accent2);font-weight:700;white-space:nowrap;flex-shrink:0;">rpsychologist.com/d3/one-way-anova</span><span style="font-size:8pt;color:var(--muted);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">— F의 출처</span></a>
+  </div>
 </body>
 </html>
