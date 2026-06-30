@@ -8,3 +8,9 @@ __pycache__/
 
 # STATA
 *.dta
+stata/*.log
+stata/*.png
+stata/wdi_panel.csv
+
+# Local run artifacts
+_local_outputs/
